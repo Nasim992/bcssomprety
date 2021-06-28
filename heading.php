@@ -10,8 +10,9 @@ $finalDate = $day.", ".$month." ".$date.",".$year;
         <span class="d-flex align-items-center">&nbsp;<b><?php echo $finalDate; ?></b></span>
     </div>
     <marquee class="news-scroll" behavior="scroll" direction="left">
-        <a href="https://www.facebook.com/BCSSHOMPRITY" target="_blank" class="text-warning"><b>
-                *** আমাদের ফেইসবুক পেজ এ যুক্ত হতে এখানে ক্লিক করুন ***</b></a>
+        <a href="https://www.facebook.com/BCSSHOMPRITY" target="_blank" class="text-warning blink_text"><b>
+                *** আমাদের ফেইসবুক পেজ এ যুক্ত হতে এখানে ক্লিক করুন ***</b></a>&emsp; &emsp;
+        <a href="https://www.facebook.com/groups/379184979665896/" target="_blank" class="blink_text text-warning"><b>*** আমাদের ফেইসবুক গ্রুপ এ যুক্ত হতে এখানে ক্লিক করুন ***</b></a>
     </marquee>
     <p class="d-flex flex-row justify-content-center news"><b>সদস্য সংখ্যা: 8</b></p>
 </div>

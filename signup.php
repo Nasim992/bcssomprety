@@ -1,3 +1,9 @@
+<?php
+session_start();
+error_reporting(E_ALL);
+include 'link/config.php';
+include 'link/functions.php';
+?>
 <!doctype html>
 <html lang="en">
 
@@ -21,38 +27,36 @@
     <?php  include 'heading.php';?>
     <!-- Navbar -->
     <?php  include 'navbar.php';?>
+    <?php display_message(); ?>
     <!-- Sign-up Form -->
     <div class="container sign-up-bg">
         <div class="container col-md-7 sign_up_form" style="padding-top: 20px">
             <h2 style="text-align:center"> রেজিস্ট্রেশন ফর্ম </h2>
             <hr> <br>
 
-            <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input
-                    type="hidden" name="authenticity_token"
-                    value="RQhNBxn0a6jfK4SRkA8MbguMpPkuj7lkB0AGwuTOLsmMdFsDsgEh2XJkvgSGqwhG0ZAf6ktK47PZqrMzJNXSUw" />
-
+            <form class="new_user" id="new_user" action="link/registration.php" accept-charset="UTF-8" method="post">
 
                 <div class="field">
                     <b>নাম</b>
-                    <input autofocus="autofocus" class="form-control" required="required" type="text" name="user[name]"
+                    <input autofocus="autofocus" class="form-control" required="required" type="text" name="user_name"
                         id="user_name" />
                 </div>
                 <br>
                 <div class="field">
                     <b>ই-মেইল</b>
                     <input autofocus="autofocus" class="form-control" required="required" type="email" value=""
-                        name="user[email]" id="user_email" />
+                        name="user_email" id="user_email" />
                 </div>
                 <br>
                 <div class="field">
                     <b>ফোন নম্বর </b>
-                    <input autofocus="autofocus" class="form-control" required="required" type="text" name="user[phone]"
+                    <input autofocus="autofocus" class="form-control" required="required" type="text" name="user_phone"
                         id="user_phone" />
                 </div>
                 <br>
                 <div class="field">
                     <b>শিক্ষা প্রতিষ্ঠানের নাম</b>
-                    <input autofocus="autofocus" class="form-control" type="text" name="user[institution]"
+                    <input autofocus="autofocus" class="form-control" type="text" name="user_institution"
                         id="user_institution" />
                 </div>
                 <br>
@@ -60,7 +64,7 @@
                     <b>পাসওয়ার্ড</b>
                     <em>(আপনার পছন্দমতো কমপক্ষে 6 অক্ষরের একটি পাসওয়ার্ড দিন)</em>
                     <input autocomplete="new-password" class="form-control password" type="password"
-                        name="user[password]" id="user_password" />
+                        name="user_password" id="user_password" />
                     <span class="p-viewer">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>
@@ -69,14 +73,14 @@
                 <div class="field">
                     <b>পাসওয়ার্ড নিশ্চিত করুন</b>
                     <input autocomplete="new-password" class="form-control confirm_password" type="password"
-                        name="user[password_confirmation]" id="user_password_confirmation" />
+                        name="user_password_confirmation" id="user_password_confirmation" />
                     <span class="p-viewer2">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>
                 </div>
                 <br>
                 <div class="actions">
-                    <input type="submit" name="commit" value="Sign up" class="btn btn-success form-control"
+                    <input type="submit" name="sign_up" value="Sign up" class="btn btn-success form-control"
                         data-disable-with="Sign up" /> <br><br>
                 </div>
             </form> <br>
