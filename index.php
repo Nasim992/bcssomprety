@@ -1,9 +1,3 @@
-<?php  
-session_start();
-error_reporting(E_ALL);
-include 'link/config.php';
-include 'link/functions.php';
-?>
 <!doctype html>
 <html lang="en">
   <head>

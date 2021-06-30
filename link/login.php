@@ -20,9 +20,13 @@ if(isset($_POST['login'])){
       </div>');
       redirect('../student/home');
     } else{ 
-        set_message('<div class="container p-2">
-        <p class="alert alert-warning alert-dismissible" id="message">Logged in Fail.If dont have any account please sign up</p>
-        </div>');
+        set_message('
+        <div class="notification-div">
+                  <div class="container" id="flash-message">
+                  <p class="alert alert-warning alert-dismissible" id="message">Logged in Fail.If dont have any account please sign up</p>
+                  </div>
+            </div>
+        ');
         redirect('/bcssomprety');
     }
 }

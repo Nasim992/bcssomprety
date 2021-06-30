@@ -10,8 +10,13 @@ $institute=$_POST['user_institution'];
 $password=md5($_POST['user_password']);
 $repeatpassword=md5($_POST['user_password_confirmation']);
 
+if(empty($username)|| empty($email)|| empty($phone) || empty($password)) {
+    set_message('<div class="container p-2">
+    <p class="alert alert-warning alert-dismissible" id="message">Required Field Can not be empty</p>
+    </div>');
+    redirect('../signup');
+} else {
 if($password==$repeatpassword) {
-
 if(is_author_available($email)>0) {
     set_message('<div class="container p-2">
     <p class="alert alert-danger alert-dismissible"id="message">Email Already is in use.Try Different Email</p>
@@ -48,6 +53,7 @@ if($query->rowCount() > 0)
     <p class="alert alert-warning alert-dismissible" id="message">Password did not match with the previous.</p>
     </div>');
     redirect('../signup');
+}
 }
 }
 

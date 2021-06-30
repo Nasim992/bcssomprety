@@ -3,7 +3,7 @@ if (isset($_SESSION['userInput'])){
   $userInput = $_SESSION["userInput"];
 } 
 ?>
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-warning">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light"style="background-color:#FFDE17;">
     <a class="navbar-brand" href="home">
         <img class="logo" src="../images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png">
         <img class="logo" src="../images/BCSS_typo-811b50effac7681ad86c2ea85205bbd4c75bdbf6a7dc0476736d480b863e075d.png">
@@ -35,7 +35,7 @@ if (isset($_SESSION['userInput'])){
                     <a class="dropdown-item" href="students">Student Panel</a>
                     <a class="dropdown-item" href="teachers">Teacher Panel</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/users/edit">Edit Profile</a>
+                    <a class="dropdown-item" href="edit_profile">Edit Profile</a>
                     <a class="dropdown-item" rel="nofollow" data-method="delete" href="../logout.php">
                         <i class="fas fa-sign-out-alt"></i> <strong>Logout</strong>
                     </a>

@@ -32,13 +32,14 @@ IsUserLoggedIn();
     <?php display_message(); ?>
     <!-- Model Test Creation -->
 
+
     <div class="container" id="flash-message">
     </div>
     </div>
     <br>
     <div class="content">
         <div class="new_model_test_box">
-            <h3 align="center">নতুন মডেল টেস্ট তৈরী করুন</h3>
+            <h3 class="text-center">নতুন মডেল টেস্ট তৈরী করুন</h3>
             <hr>
             <br>
             <form class="new_model_test" id="new_model_test" enctype="multipart/form-data" action="/model_tests"
@@ -172,7 +173,7 @@ IsUserLoggedIn();
                         <option value="22">10 PM</option>
                         <option value="23">11 PM</option>
                     </select>
-                    : <select id="model_test_start_date_5i" name="model_test[start_date(5i)]" style="width:auto;"
+                    : <select id="model_test_start_date_5i" name="model_test_start_date" style="width:auto;"
                         class="form-control datetimepicker">
                         <option value="00">00</option>
                         <option value="01">01</option>
@@ -241,68 +242,79 @@ IsUserLoggedIn();
 
                 <div class="form-row">
                     <strong> মোট সময়</strong>
-                    <input autocomplete="off" class="form-control" type="number" value="0" name="model_test[duration]"
+                    <input autocomplete="off" class="form-control" type="number" value="0" name="model_test_duration"
                         id="model_test_duration" />
                 </div>
                 <br>
-
-                <button type="button" class="advance_btn btn btn-primary">Advance Option</button>
-
-                <div class="advance_option">
-                    <div class="form-row">
-                        <strong> প্রশ্নের সেট </strong>
-                        <input placeholder="মেঘদূত" autocomplete="off" class="form-control" type="text"
-                            name="model_test[set]" id="model_test_set" />
-                    </div>
-                    <br>
-
-                    <div class="form-row">
-                        <strong> কোর্স </strong>
-                        <select id="category_select" class="form-control" name="model_test[category_id]">
-                            <option value="">কোর্স নির্বাচন করুন</option>
-                        </select>
-                    </div>
-                    <br>
-
-                    <div class="form-group">
-                        <strong>মডেল টেস্টটি ফ্রি করুন </strong> &nbsp &nbsp &nbsp &nbsp
-                        <input class="radio_btn" type="radio" value="free" name="model_test[payment]"
-                            id="model_test_payment_free" />
-                        <label for="payment_হ্যা ">হ্যা </label>&nbsp &nbsp
-                        <input class="radio_btn" type="radio" value="pay" name="model_test[payment]"
-                            id="model_test_payment_pay" />
-                        <label for="payment_না ">না </label>&nbsp &nbsp
-                    </div>
-                    <br>
-
-                    <div class="form-group">
-                        <strong>সিকিউর পিনঃ </strong> &nbsp &nbsp &nbsp &nbsp
-                        <input id="addPin" class="radio_btn" type="radio" value="pin_protected"
-                            name="model_test[pined]" />
-                        <label for="pined_হ্যা ">হ্যা </label>&nbsp &nbsp
-                        <input id="removePin" class="radio_btn" type="radio" value="not_protected" checked="checked"
-                            name="model_test[pined]" />
-                        <label for="pined_না ">না </label>&nbsp &nbsp
-                    </div>
-                    <div class="form-group">
-                        <input placeholder="1234" class="form-control" type="text" name="model_test[pin]"
-                            id="model_test_pin" />
-                    </div>
-
-                    <div class="form-group">
-                        <input name="model_test[featured]" type="hidden" value="0" /><input value="1"
-                            id="addModelTestImage" type="checkbox" name="model_test[featured]" />
-                        <strong>স্লাইডার এ ব্যানার যুক্ত করুন</strong>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group model_test_image">
-                            <strong> মডেল টেস্ট ব্যানার </strong>
-                            <input class="form-control" type="file" name="model_test[model_test_banner]"
-                                id="model_test_model_test_banner" />
+                <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Advanced Option
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div>
+                        <div class="form-row">
+                            <strong> প্রশ্নের সেট </strong>
+                            <input placeholder="মেঘদূত" autocomplete="off" class="form-control" type="text"
+                                name="model_test_set" id="model_test_set" />
                         </div>
+                        <br>
+
+                        <div class="form-row">
+                            <strong> কোর্স </strong>
+                            <select id="category_select" class="form-control" name="model_test_category">
+                                <option value="">কোর্স নির্বাচন করুন</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <strong>মডেল টেস্টটি ফ্রি করুন </strong> &nbsp &nbsp &nbsp &nbsp
+                            <input class="radio_btn" type="radio" value="free" name="model_test_payment"
+                                id="model_test_payment_free" />
+                            <label for="payment_হ্যা ">হ্যা </label>&nbsp &nbsp
+                            <input class="radio_btn" type="radio" value="pay" name="model_test_payment"
+                                id="model_test_payment_pay" />
+                            <label for="payment_না ">না </label>&nbsp &nbsp
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <strong>সিকিউর পিনঃ </strong> &nbsp &nbsp &nbsp &nbsp
+                            <input id="addPin" class="radio_btn" type="radio" value="pin_protected"
+                                name="model_test_pinned" />
+                            <label for="pined_হ্যা ">হ্যা </label>&nbsp &nbsp
+                            <input id="removePin" class="radio_btn" type="radio" value="not_pinned_protected" checked="checked"
+                                name="model_test_pinned" />
+                            <label for="pined_না ">না </label>&nbsp &nbsp
+                        </div>
+                        <div class="form-group">
+                            <input placeholder="1234" class="form-control" type="text" name="secure_pin"
+                                id="model_test_pin" />
+                        </div>
+
+                        <div class="form-group">
+                            <p>
+                        <input value="1" id="addModelTestImage" data-toggle="collapse"
+                                    data-target="#collapseExample1" aria-expanded="false"
+                                    aria-controls="collapseExample1" type="checkbox" name="model_test[featured]" />
+                                <strong>স্লাইডার এ ব্যানার যুক্ত করুন</strong>
+                            </p>
+                            <div class="collapse" id="collapseExample1">
+                                <div class="form-row">
+                                    <div class="form-group model_test_image">
+                                        <strong> মডেল টেস্ট ব্যানার </strong>
+                                        <input class="form-control model_test_image" type="file" name="banner" accept=".img,.png,.webp,.git,.jpg,.jpeg" id="model_test_model_test_banner" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
+
 
                 <div class="form-row">
                     <div class="col-md-4"></div>
