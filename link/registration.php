@@ -16,7 +16,7 @@ if(empty($username)|| empty($email)|| empty($phone) || empty($password)) {
     </div>');
     redirect('../signup');
 } else {
-if($password==$repeatpassword) {
+if($password==$repeatpassword) { 
 if(is_author_available($email)>0) {
     set_message('<div class="container p-2">
     <p class="alert alert-danger alert-dismissible"id="message">Email Already is in use.Try Different Email</p>
@@ -24,7 +24,7 @@ if(is_author_available($email)>0) {
     redirect('../signup');
 }else
 {
-$sql="INSERT INTO  user(name,phone,email,institute,password) VALUES(:username,:phone,:email,:institute,:password)";
+$sql="INSERT INTO  ".$USER."(name,phone,email,institute,password) VALUES(:username,:phone,:email,:institute,:password)";
 
 $query = $dbh->prepare($sql);
 

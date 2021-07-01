@@ -1,8 +1,3 @@
-<?php 
-if (isset($_SESSION['userInput'])){
-  $userInput = $_SESSION["userInput"];
-} 
-?>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light"style="background-color:#FFDE17;">
     <a class="navbar-brand" href="home">
         <img class="logo" src="../images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png">
@@ -22,10 +17,6 @@ if (isset($_SESSION['userInput'])){
                 <a class="nav-link" href="exams"><b>Exam</b><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-            <?php if(empty($userInput)){ ?>
-                <a class="nav-link btn btn-success text-white btn-block" href="/bcssomprety"><b>Login</b><span
-                        class="sr-only">(current)</span></a>
-            <?php }else { ?>
             <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -41,7 +32,6 @@ if (isset($_SESSION['userInput'])){
                     </a>
                 </div>
             </li>
-            <?php  } ?>
             </li>
         </ul>
     </div>

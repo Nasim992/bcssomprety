@@ -1,8 +1,11 @@
-<?php
+<?php 
 session_start();
 error_reporting(E_ALL);
 include 'link/config.php';
 include 'link/functions.php';
+if (isset($_SESSION['userInput'])){
+  $userInput = $_SESSION["userInput"];
+} 
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,65 +1,65 @@
-<?php  
-session_start();
-error_reporting(E_ALL);
-include '../link/config.php';
-include '../link/functions.php';
-IsUserLoggedIn();
+<?php include 'toplayout.php';
+// Check that course is allocated or not
+$user_id=userID($userInput);
+$remaining_courses=remaining_courses($user_id);
+if($remaining_courses===NULL) {
+    // redirect('no_course_limit');
+    echo "<script type='text/javascript'> document.location = 'no_course_limit'; </script>";
+}
 ?>
-<!doctype html>
-<html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport"
-        content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=2.0,minimum-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="shortcut icon" href="images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png"
-        type="image/x-icon">
-    <link rel="stylesheet" href="../css/index.css">
-    <title>BCS Somprety</title>
-</head>
+<div class="container">
+    <div class="new_model_test_box">
+        <h3 class="text-center">নতুন কোর্স তৈরী করুন</h3>
+        <hr>
+        <br>
+        <form action="../link/create_new_courses" method="post">
 
-<body>
-    <!-- Heading -->
-    <?php  include '../heading.php';?>
-    <!-- Navbar -->
-    <?php  include 'navbar.php';?>
-    <!-- Display Message -->
-    <?php display_message(); ?>
-    <!-- Teacher Courses -->
-    <div class="container" id="flash-message">
+            <div class="form-row">
+                <strong> কোর্সের নাম </strong>
+                <input autocomplete="off" class="form-control" type="text" name="course_name" required />
+            </div>
+            <br>
+
+            <div class="form-row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <strong>কোর্সটি ফ্রি করুন </strong> &nbsp &nbsp &nbsp &nbsp
+                        <br>
+                        <input id="course_free" class="radio_btn" onclick="handleChange()" type="radio" value="free"
+                            name="payment_status" />
+                        <label for="pined_হ্যা ">হ্যা </label>&nbsp &nbsp
+                        <input id="course_paid" class="radio_btn" type="radio" onclick="handleChangePaid()" value="paid"
+                            name="payment_status" checked="checked" />
+                        <label for="pined_না ">না </label>&nbsp &nbsp
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-row">
+                        <div class="form-group model_test_fee">
+                            <strong> ফি এর পরিমান </strong>
+                            <input class="form-control" autocomplete="off" type="number" id="payment_amount"
+                                name="payment_amount" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <input type="submit" name="create_courses" class="btn btn-success">
+                    <a href="teachers" class="btn btn-danger">Cancel</a>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+
+        </form>
+
+
     </div>
-    </div>
-    <br>
-    <div class="container text-center">
-        <img class="sorry_img"
-            src="../images/sorry-31e3605499af70677dda15d9e1e518c18e7f69a7b7f201d6a764a399686def5e.png" />
-        <p><br></p>
-        <h3>আপনার জন্য কোনো কোর্স বরাদ্ধ নাই। কোর্স বরাদ্ধ পেতে যোগাযোগ করুন: </h3>
-        <h3>মিজানুর রহমান: ০১৭৯৯-০৯৭১৫৬</h3>
-    </div>
-    <br>
-    <!-- Footer -->
-    <?php include '../footer.php'?>
+</div>
 
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
-    </script>
-
-</body>
-
-</html>
+<?php include 'bottomlayout.php'; ?>

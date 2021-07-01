@@ -21,7 +21,7 @@ if(empty($username)|| empty($email)|| empty($phone) || empty($institute)||empty(
     redirect('../signup');
 } else {
 
-$sql = "UPDATE user SET name=?,phone=?,email=?,institute=?,password=? WHERE phone=? OR email=?";
+$sql = "UPDATE ".$USER." SET name=?,phone=?,email=?,institute=?,password=? WHERE phone=? OR email=?";
 $query = $dbh->prepare($sql);
 $query->execute([$username,$phone,$email,$institute,$password,$userInput, $userInput]);
 if($query->rowCount() > 0) {

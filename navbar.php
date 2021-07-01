@@ -1,12 +1,3 @@
-<?php 
-session_start();
-error_reporting(E_ALL);
-include 'link/config.php';
-include 'link/functions.php';
-if (isset($_SESSION['userInput'])){
-  $userInput = $_SESSION["userInput"];
-} 
-?>
 <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:#FFDE17;">
     <?php  if (empty($userInput)){?>
     <a class="navbar-brand" href="/bcssomprety">
