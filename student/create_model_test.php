@@ -1,4 +1,7 @@
-<?php include 'toplayout.php' ?>
+<?php include 'toplayout.php';
+$user_id=userID($userInput);
+$data = all_by_userID($CREATE_COURSE,$user_id);
+?>
 
 <!-- Model Test Creation -->
 <div class="container" id="flash-message">
@@ -10,23 +13,17 @@
         <h3 class="text-center">নতুন মডেল টেস্ট তৈরী করুন</h3>
         <hr>
         <br>
-        <form class="new_model_test" id="new_model_test" enctype="multipart/form-data" action="/model_tests"
-            accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token"
-                value="O_ZdK8YX2C2lX8GqrghTmBaMEL3mooLkZngYVIaMfsDTW2Y_zNmCghVRtF0AEE3p-njFhEADw-0s9PdEkJpj4A" />
-
-            <input value="8" type="hidden" name="model_test[user_id]" id="model_test_user_id" />
+        <form class="new_model_test" id="new_model_test" enctype="multipart/form-data" action="../link/create_model_test" method="post">
 
             <div class="form-row">
                 <strong> মডেল টেস্টের নাম </strong>
-                <input autocomplete="off" class="form-control" type="text" name="model_test[name]"
-                    id="model_test_name" />
+                <input autocomplete="off" type="text" name="model_test_name" class="form-control" required/>
             </div>
             <br>
 
             <div class="form-row">
                 <strong> পরীক্ষকের নাম </strong>
-                <input autocomplete="off" class="form-control" type="text" name="model_test[setter]"
-                    id="model_test_setter" />
+                <input autocomplete="off" class="form-control" type="text" name="model_test_examiner_name" id="model_test_setter" />
             </div>
             <br>
 
@@ -34,15 +31,15 @@
                 <div class="col-md-6">
                     <div class="form-row">
                         <strong> সঠিক উত্তরের মান </strong>
-                        <input step="any" autocomplete="off" class="form-control" type="number" value="0.0"
-                            name="model_test[mark]" id="model_test_mark" />
+                        <input autocomplete="off" class="form-control" type="number" value="" min="1"
+                            name="model_test_positive_mark" id="model_test_mark" placeholder="1.0"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <strong>নেগেটিভ নম্বর </strong>
-                        <input step="any" class="form-control" type="number" value="0.0"
-                            name="model_test[negative_mark]" id="model_test_negative_mark" />
+                        <input step="any" class="form-control" type="number"
+                            name="model_test_negative_mark" min="1" id="model_test_negative_mark"placeholder="0.0"/>
                     </div>
                 </div>
             </div>
@@ -51,160 +48,11 @@
             <strong> মডেল টেস্টের তারিখ ও সময়</strong>
             <br>
             <div class="form-row">
-                <select id="model_test_start_date_3i" name="model_test[start_date(3i)]" style="width:auto;"
-                    class="form-control datetimepicker">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28" selected="selected">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                </select>
-                <select id="model_test_start_date_2i" name="model_test[start_date(2i)]" style="width:auto;"
-                    class="form-control datetimepicker">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6" selected="selected">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
-                <select id="model_test_start_date_1i" name="model_test[start_date(1i)]" style="width:auto;"
-                    class="form-control datetimepicker">
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021" selected="selected">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                </select>
-                &mdash; <select id="model_test_start_date_4i" name="model_test[start_date(4i)]" style="width:auto;"
-                    class="form-control datetimepicker">
-                    <option value="00">12 AM</option>
-                    <option value="01">01 AM</option>
-                    <option value="02">02 AM</option>
-                    <option value="03">03 AM</option>
-                    <option value="04">04 AM</option>
-                    <option value="05">05 AM</option>
-                    <option value="06">06 AM</option>
-                    <option value="07">07 AM</option>
-                    <option value="08">08 AM</option>
-                    <option value="09">09 AM</option>
-                    <option value="10">10 AM</option>
-                    <option value="11">11 AM</option>
-                    <option value="12">12 PM</option>
-                    <option value="13">01 PM</option>
-                    <option value="14">02 PM</option>
-                    <option value="15">03 PM</option>
-                    <option value="16">04 PM</option>
-                    <option value="17">05 PM</option>
-                    <option value="18">06 PM</option>
-                    <option value="19">07 PM</option>
-                    <option value="20" selected="selected">08 PM</option>
-                    <option value="21">09 PM</option>
-                    <option value="22">10 PM</option>
-                    <option value="23">11 PM</option>
-                </select>
-                : <select id="model_test_start_date_5i" name="model_test_start_date" style="width:auto;"
-                    class="form-control datetimepicker">
-                    <option value="00">00</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07" selected="selected">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                    <option value="32">32</option>
-                    <option value="33">33</option>
-                    <option value="34">34</option>
-                    <option value="35">35</option>
-                    <option value="36">36</option>
-                    <option value="37">37</option>
-                    <option value="38">38</option>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
-                    <option value="45">45</option>
-                    <option value="46">46</option>
-                    <option value="47">47</option>
-                    <option value="48">48</option>
-                    <option value="49">49</option>
-                    <option value="50">50</option>
-                    <option value="51">51</option>
-                    <option value="52">52</option>
-                    <option value="53">53</option>
-                    <option value="54">54</option>
-                    <option value="55">55</option>
-                    <option value="56">56</option>
-                    <option value="57">57</option>
-                    <option value="58">58</option>
-                    <option value="59">59</option>
-                </select>
-
+                <div class="d-flex justify-content-between">
+                    <input type="date" name="mode_test_date" class="form-control" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>"> -
+                    <input type="time" name="mode_test_time" class="form-control"
+                        min="<?php $hour = date("h")+6;echo date("$hour:i");?>">
+                </div>
             </div>
             <br>
 
@@ -232,7 +80,9 @@
                     <div class="form-row">
                         <strong> কোর্স </strong>
                         <select id="category_select" class="form-control" name="model_test_category">
-                            <option value="">কোর্স নির্বাচন করুন</option>
+                          <?php  foreach ($data as $row) { ?>
+                            <option value="<?php echo $row['id']; ?>"><?php echo $row['course_name']; ?></option>
+                          <?php } ?>
                         </select>
                     </div>
                     <br>
@@ -266,14 +116,14 @@
                         <p>
                             <input value="1" id="addModelTestImage" data-toggle="collapse"
                                 data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"
-                                type="checkbox" name="model_test[featured]" />
+                                type="checkbox" name="model_test_banner" />
                             <strong>স্লাইডার এ ব্যানার যুক্ত করুন</strong>
                         </p>
                         <div class="collapse" id="collapseExample1">
                             <div class="form-row">
                                 <div class="form-group model_test_image">
                                     <strong> মডেল টেস্ট ব্যানার </strong>
-                                    <input class="form-control model_test_image" type="file" name="banner"
+                                    <input class="form-control model_test_image" type="file" name="banner_image"
                                         accept=".img,.png,.webp,.git,.jpg,.jpeg" id="model_test_model_test_banner" />
                                 </div>
                             </div>
@@ -288,9 +138,9 @@
             <div class="form-row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <input type="submit" name="commit" value="Add Model Test" class="btn btn-success"
+                    <input type="submit" name="create_model_test" value="Add Model Test" class="btn btn-success"
                         data-disable-with="Add Model Test" />
-                    <a class="btn btn-danger" href="https://bcsshomprity.herokuapp.com/users/8/teacher">Cancel</a>
+                    <a class="btn btn-danger" href="teachers">Cancel</a>
                 </div>
                 <div class="col-md-4"></div>
             </div>

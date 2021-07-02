@@ -24,7 +24,8 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
             <td>
                 <form action="../link/edit_my_courses.php" method="post">
                     <input type="hidden" name="course_id" value="<?php echo $row['id']?>">
-                    <input type="text" name="course_name" value="<?php  echo $row['course_name']; ?>" placeholder="<?php  echo $row['course_name']; ?>" required>
+                    <input type="text" name="course_name" value="<?php  echo $row['course_name']; ?>"
+                        placeholder="<?php  echo $row['course_name']; ?>" required>
                     <input type="submit" name="update_course_name" class="btn btn-sm btn-info" value="update">
                 </form>
 
@@ -39,21 +40,34 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
             <td> <?php  echo $row['register_student']; ?></td>
             <td>
                 <form action="../link/edit_my_courses.php" method="post">
-                <input type="hidden" name="course_id" value="<?php echo $row['id']?>">
+                    <input type="hidden" name="course_id" value="<?php echo $row['id']?>">
                     <select id="cars" name="payment_status" required>
-                        <option value="<?php  echo ($row['payment_status']==0?"Paid":"Free"); ?>"><?php  echo ($row['payment_status']==0?"Paid":"Free"); ?></option>
-                        <option value="<?php  echo ($row['payment_status']==0?"Free":"Paid"); ?>"><?php  echo ($row['payment_status']==0?"Free":"Paid"); ?></option>
+                        <option value="<?php  echo ($row['payment_status']==0?"Paid":"Free"); ?>">
+                            <?php  echo ($row['payment_status']==0?"Paid":"Free"); ?></option>
+                        <option value="<?php  echo ($row['payment_status']==0?"Free":"Paid"); ?>">
+                            <?php  echo ($row['payment_status']==0?"Free":"Paid"); ?></option>
                     </select>
                     <input type="submit" name="update_payment_status" class="btn btn-sm btn-info" value="update">
                 </form>
 
             </td>
-            <td> 
-            <form action="../link/edit_my_course.php" method="post">
+            <td>
+                <?php if($row['payment_status']==1){?>
+                <form action="../link/edit_my_courses.php" method="post">
                     <input type="hidden" name="course_id" value="<?php echo $row['id']?>">
-                    <input type="number" name="payment_amount" value="<?php  echo $row['payment_amount']; ?>" placeholder="<?php  echo $row['payment_amount']; ?>" required>
+                    <input type="number" name="payment_amount" value="<?php  echo $row['payment_amount']; ?>"
+                        placeholder="<?php  echo $row['payment_amount']; ?>" required>
+                    <input type="submit" name="update_payment_amount" class="btn btn-sm btn-info" value="update"
+                        disabled>
+                </form>
+                <?php }else { ?>
+                <form action="../link/edit_my_courses.php" method="post">
+                    <input type="hidden" name="course_id" value="<?php echo $row['id']?>">
+                    <input type="number" name="payment_amount" value="<?php  echo $row['payment_amount']; ?>"
+                        placeholder="<?php  echo $row['payment_amount']; ?>" required>
                     <input type="submit" name="update_payment_amount" class="btn btn-sm btn-info" value="update">
                 </form>
+                <?php  }  ?>
             </td>
             <td>
                 <a href="my_courses">Edited</a>
