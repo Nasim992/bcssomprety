@@ -96,3 +96,24 @@ if($query->rowCount() > 0) {
     return false;
 }
 }
+
+// Convert English to bangla 
+function englishToBangla($number){
+    $bn = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
+    $en = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+    return str_replace($en,$bn,$number);
+}
+function banglaToEnglish($number){
+    $bn = array("১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯", "০");
+    $en = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "0");
+    return str_replace($bn,$en,$number);
+}
+// String to Date Time Format
+function stringToDate($date){
+    $date = strtotime($date);
+    return date('d-M-Y', $date);
+}
+function stringToTime($date){
+    $date = strtotime($date);
+    return date('h:i a', $date);
+}

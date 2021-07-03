@@ -31,29 +31,30 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                 <div class="col-md-6">
                     <div class="form-row">
                         <strong> সঠিক উত্তরের মান </strong>
-                        <input autocomplete="off" class="form-control" type="number" value="" min="1"
-                            name="model_test_positive_mark" id="model_test_mark" placeholder="1.0"/>
+                        <input autocomplete="off" class="form-control" type="number" value="1" min="1"
+                            name="model_test_positive_mark" id="model_test_mark" placeholder="1"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <strong>নেগেটিভ নম্বর </strong>
                         <input step="any" class="form-control" type="number"
-                            name="model_test_negative_mark" min="1" id="model_test_negative_mark"placeholder="0.0"/>
+                            name="model_test_negative_mark" value="0" min="0" id="model_test_negative_mark"placeholder="0.0"/>
                     </div>
                 </div>
-            </div>
+            </div> 
             <br>
 
             <strong> মডেল টেস্টের তারিখ ও সময়</strong>
             <br>
-            <div class="form-row">
-                <div class="d-flex justify-content-between">
-                    <input type="date" name="mode_test_date" class="form-control" min="<?php echo date("Y-m-d"); ?>" value="<?php echo date("Y-m-d"); ?>"> -
-                    <input type="time" name="mode_test_time" class="form-control"
-                        min="<?php $hour = date("h")+6;echo date("$hour:i");?>">
-                </div>
+
+            <div class="input-group ">
+            <div class="input-group-prepend">
+            <button type="button" id="toggledate" class="input-group-text"><i class="fa fa-calendar-alt"></i></button>
             </div>
+            <input type="text" id="picker" name="model_test_date"  class="form-control">
+            </div>
+
             <br>
 
             <div class="form-row">
