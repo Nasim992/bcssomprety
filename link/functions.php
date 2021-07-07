@@ -71,6 +71,16 @@ function remaining_courses($user_id){
     return $rcourse['remaining_courses'];
 }
 
+// Function Remaining By ID DESC
+
+ function remainingBYID_DESC($TABLE_NAME,$FIELD_NAME,$id){
+     global $dbh;
+     $stmt = $dbh->prepare("SELECT ".$FIELD_NAME." FROM ".$TABLE_NAME." WHERE ".$id."=? ORDER BY id DESC");
+     $stmt->execute([$id]); 
+     $rcourse = $stmt->fetch();
+     return $rcourse["$FIELD_NAME"];
+ }
+
 // Function all users is equal to the userid 
 
 function all_by_userID($table_name,$user_id){
@@ -82,6 +92,24 @@ return $dbh->query("SELECT * FROM ".$table_name." WHERE user_id='$user_id'")->fe
 function all($table_name){
     global $dbh;
     return $dbh->query("SELECT * FROM ".$table_name."")->fetchAll();
+}
+
+// Function returns number (total number of rows where comparison)
+function TotalNumberOfRowsWhere($TABLE_NAME,$COMPARE_FIELD,$id){
+    global $dbh;
+    $sql = "SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."=?";
+    $query = $dbh->prepare($sql);
+    $query->execute([$id]);
+    return $query->rowCount();
+}
+
+// Function returns total rows in a table 
+function TotalNumberOfRows($TABLE_NAME){
+    global $dbh;
+    $sql = "SELECT * FROM ".$TABLE_NAME."";
+    $query = $dbh->prepare($sql);
+    $query->execute();
+    return $query->rowCount();
 }
 
 // Update One Column in Table 
@@ -113,6 +141,7 @@ function stringToDate($date){
     $date = strtotime($date);
     return date('d-M-Y', $date);
 }
+
 function stringToTime($date){
     $date = strtotime($date);
     return date('h:i a', $date);

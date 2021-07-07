@@ -49,7 +49,7 @@ if($query->rowCount() > 0) {
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Model Test Created Successfully</p>
   </div>');
-  redirect('../student/teachers');
+  redirect('../student/add_questions');
 }else {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>

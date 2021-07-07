@@ -50,7 +50,7 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
 
             <div class="input-group ">
             <div class="input-group-prepend">
-            <button type="button" id="toggledate" class="input-group-text"><i class="fa fa-calendar-alt"></i></button>
+            <button type="button"  class="input-group-text"><i class="fa fa-calendar-alt"></i></button>
             </div>
             <input type="text" id="picker" name="model_test_date"  class="form-control">
             </div>

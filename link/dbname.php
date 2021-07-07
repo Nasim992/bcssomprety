@@ -10,3 +10,4 @@ define('DB_NAME','bcs_somprety');
 $CREATE_COURSE = 'create_course';
 $USER = 'user';
 $MODEL_TEST = 'model_test';
+$QUESTIONS  = 'questions';

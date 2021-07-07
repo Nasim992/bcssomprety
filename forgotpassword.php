@@ -1,3 +1,4 @@
+<?php include 'link/functions.php'; ?>
 <!doctype html>
 <html lang="en">
 

@@ -6,7 +6,7 @@ if($remaining_courses===NULL) {
     // redirect('no_course_limit');
     echo "<script type='text/javascript'> document.location = 'no_course_limit'; </script>";
 }
-?>
+?> 
 
 <div class="container">
     <div class="new_model_test_box">
