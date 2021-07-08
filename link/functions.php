@@ -80,6 +80,16 @@ function remaining_courses($user_id){
      $rcourse = $stmt->fetch();
      return $rcourse["$FIELD_NAME"];
  }
+ 
+// Function returns number (total number of rows where comparison)
+function returnSingleValue($TABLE_NAME,$SELECTED_FIELD,$COMPARE_FIELD,$id){
+    global $dbh;
+    $sql = "SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."=?";
+    $stmt = $dbh->prepare("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."=?");
+    $stmt->execute([$id]); 
+    $rcourse = $stmt->fetch();
+    return $rcourse["$SELECTED_FIELD"];
+}
 
 // Function all users is equal to the userid 
 
@@ -94,12 +104,40 @@ function all($table_name){
     return $dbh->query("SELECT * FROM ".$table_name."")->fetchAll();
 }
 
+// Functions returns all value comparing some field 
+function all_by_SPECIFIC_ID($TABLE_NAME,$COMPARE_FIELD,$ID){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."='$ID'")->fetchAll();
+}
+
+// Functions Join Two Tables Full Join
+function twoTablesFULLJOIN($TABLE1,$TABLE1_ID,$TABLE2,$TABLE2_ID){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$TABLE1."  JOIN ".$TABLE2." ON $TABLE1.$TABLE1_ID=$TABLE2.$TABLE2_ID")->fetchAll();
+}
+
+// Functions Join Two Tables Full Join
+function twoTablesFULLJOIN_WHERE($TABLE1,$TABLE1_ID,$TABLE2,$TABLE2_ID,$COMPARE_FIELD,$id){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$TABLE1."  JOIN ".$TABLE2." ON $TABLE1.$TABLE1_ID=$TABLE2.$TABLE2_ID  WHERE $TABLE1.$COMPARE_FIELD='$id'")->fetchAll();
+}
+
+
 // Function returns number (total number of rows where comparison)
 function TotalNumberOfRowsWhere($TABLE_NAME,$COMPARE_FIELD,$id){
     global $dbh;
     $sql = "SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."=?";
     $query = $dbh->prepare($sql);
     $query->execute([$id]);
+    return $query->rowCount();
+}
+
+// Function returns number (total number of rows where comparison two fiedls)
+function TotalNumberOfRowsWhereTWO_AND($TABLE_NAME,$COMPARE_FIELD1,$COMPARE_FIELD2,$id1,$id2){
+    global $dbh;
+    $sql = "SELECT * FROM ".$TABLE_NAME." WHERE $COMPARE_FIELD1=? AND $COMPARE_FIELD2=?";
+    $query = $dbh->prepare($sql);
+    $query->execute([$id1,$id2]);
     return $query->rowCount();
 }
 

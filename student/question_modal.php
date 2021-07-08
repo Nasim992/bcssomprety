@@ -15,6 +15,8 @@
             <div class="modal-footer">
                 <button class="btn btn-success question_modal_btn" data-dismiss="modal"> Add New Question</button>
                 <form action="../link/finish_model_test.php" method="post">
+                    <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
+                    <input type="hidden" name="model_test_id" value="<?php echo $modelTestID; ?>">
                     <button type="submit" name="finish_button" class="btn btn-danger">Finish Model Test</button>
                 </form>
             </div>

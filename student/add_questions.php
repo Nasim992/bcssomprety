@@ -1,13 +1,20 @@
 <?php include 'toplayout.php';
 
 $userId = userID($userInput);
-$modelTestID = remainingBYID_DESC($MODEL_TEST,"id",$userId);
+
+if(empty($_GET['id'])){
+    $modelTestID = remainingBYID_DESC($MODEL_TEST,"id",$userId);
+}else {
+    $modelTestID = $_GET['id'];
+}
+$modelTestID =  intval($modelTestID);
 $numberOfQuestions = TotalNumberOfRowsWhere($QUESTIONS,"model_test_id",$modelTestID);
-$finishedValue =  remainingBYID_DESC($MODEL_TEST,"finished",$userId);
-if(!empty($finishedValue)){
-    // redirect('view_model_tests');
+$finishedValue =  returnSingleValue($MODEL_TEST,"finished",'id',$modelTestID);
+if(!empty($finishedValue)|| (TotalNumberOfRowsWhere($MODEL_TEST,"id",$modelTestID))===0){
     echo "<script type='text/javascript'> document.location = 'view_model_tests'; </script>";
 }
+$modelTestName = returnSingleValue($MODEL_TEST,'model_test_name','id',$modelTestID);
+
 ?>
 
 <div class="container">
@@ -16,8 +23,7 @@ if(!empty($finishedValue)){
         include 'question_modal.php';
     }
     ?>
-
-    <h4 class="text-center">New Model Test মডেল টেস্ট এর জন্য প্রশ্ন যুক্ত করুন </h4>
+    <h4 class="text-center"><?php echo $modelTestName;?> মডেল টেস্ট এর জন্য প্রশ্ন যুক্ত করুন </h4>
     <hr>
 
     <div class="description_for_question">
@@ -37,12 +43,12 @@ if(!empty($finishedValue)){
             <input type="hidden" name="model_test_id" value="<?php echo $modelTestID;?>" />
 
             <div class="question_box">
-                <strong> প্রশ্ন নম্বর: 1</strong>
-                <textarea autocomplete="off" class="form-control" name="question_statement" id="question_statement">
+                <strong> প্রশ্ন নম্বর: <?php echo englishToBangla($numberOfQuestions+1);?></strong>
+                <textarea autocomplete="off" class="form-control" name="question_statement" id="question_statement" required>
                  </textarea>
                 <br>
                 <span>ছবি যুক্ত করুন (if necessary)</span>
-                <input style="width: 100%" type="file" name="question_image" id="question_question_image" />
+                <input style="width: 100%" type="file" name="question_image" id="question_question_image"  accept=".img,.png,.webp,.git,.jpg,.jpeg" />
             </div>
             <br>
 
@@ -51,51 +57,48 @@ if(!empty($finishedValue)){
                 <strong> অপশন A: </strong>
                 <input autocomplete="off" class="form-control" type="text"
                     name="option_A"
-                    id="question_answer_options_attributes_0_option" />
+                    id="question_answer_options_attributes_0_option" required/>
                 <br>
                 <span>ছবি যুক্ত করুন (if necessary)</span>
                 <input style="width: 100%" type="file" name="option_A_image"
-                    id="question_answer_options_attributes_0_option_image" />
+                    id="question_answer_options_attributes_0_option_image"  accept=".img,.png,.webp,.git,.jpg,.jpeg" />
             </div>
 
             <div class="option_box">
                 <strong> অপশন B: </strong>
                 <input autocomplete="off" class="form-control" type="text"
                     name="option_B"
-                    id="question_answer_options_attributes_1_option" />
+                    id="question_answer_options_attributes_1_option" required/>
                 <br>
                 <span>ছবি যুক্ত করুন (if necessary)</span>
-                <input style="width: 100%" type="file" name="question_B_image"
-                    id="question_answer_options_attributes_1_option_image" />
+                <input style="width: 100%" type="file" name="option_B_image"
+                    id="question_answer_options_attributes_1_option_image"  accept=".img,.png,.webp,.git,.jpg,.jpeg" />
             </div>
-            <input type="hidden" name="question[answer_options_attributes][1][question_id]"
-                id="question_answer_options_attributes_1_question_id" />
-
             <div class="option_box">
                 <strong> অপশন C: </strong>
                 <input autocomplete="off" class="form-control" type="text"
                     name="option_C"
-                    id="question_answer_options_attributes_2_option" />
+                    id="question_answer_options_attributes_2_option" required/>
                 <br>
                 <span>ছবি যুক্ত করুন (if necessary)</span>
                 <input style="width: 100%" type="file" name="option_C_image"
-                    id="question_answer_options_attributes_2_option_image" />
+                    id="question_answer_options_attributes_2_option_image"  accept=".img,.png,.webp,.git,.jpg,.jpeg" />
             </div>
 
             <div class="option_box">
                 <strong> অপশন D: </strong>
                 <input autocomplete="off" class="form-control" type="text"
                     name="option_D"
-                    id="question_answer_options_attributes_3_option" />
+                    id="question_answer_options_attributes_3_option" required/>
                 <br>
                 <span>ছবি যুক্ত করুন (if necessary)</span>
                 <input style="width: 100%" type="file" name="option_D_image"
-                    id="question_answer_options_attributes_3_option_image" />
+                    id="question_answer_options_attributes_3_option_image"  accept=".img,.png,.webp,.git,.jpg,.jpeg" />
             </div>
 
             <div class="right_answer_box">
                 <strong> সঠিক উত্তর লিখুন: </strong>
-                <select class="form-control" name="correct_answer" id="question_setter_answer">
+                <select class="form-control" name="correct_answer" id="question_setter_answer" required>
                     <option value="">সঠিক উত্তর নির্বাচন করুন</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -110,7 +113,7 @@ if(!empty($finishedValue)){
                 <br>
                 <span>ছবি যুক্ত করুন (if necessary)</span>
                 <input style="width: 100%" type="file" name="question_answer_image"
-                    id="question_description_image" />
+                    id="question_description_image"  accept=".img,.png,.webp,.git,.jpg,.jpeg" />
             </div>
             <br>
 
@@ -122,17 +125,5 @@ if(!empty($finishedValue)){
     </div>
 </div>
 <br>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'bottomlayout.php'?>

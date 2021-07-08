@@ -29,10 +29,16 @@ $data = all_by_userID($MODEL_TEST,$user_id);
         <td><?php echo stringToTime($row['model_test_date']); ?></td>
         <td><?php echo $row['duration']; ?></td>
         <td><?php echo "not added"; ?></td>
-        <td><?php echo $row['secure_pin']; ?></td>
-        <td><?php echo $row['model_set']; ?></td>
+        <td><?php echo empty($row['secure_pin'])?"—":$row['secure_pin']; ?></td>
+        <td><?php echo empty($row['model_set'])?"—":$row['model_set']; ?></td>
         <td><?php echo empty($row['total_questions'])?"—":$row['total_questions']; ?></td>
-        <td><a href="#">Edit</a></td>
+        <td>
+          <a href="view_model_question/id/<?php echo $row['id']?>">Show</a>&nbsp;
+          |&nbsp; <a href="edit_model_question/id/<?php echo $row['id']?>">Edit</a>&nbsp;
+          <?php if ($row['finished'] ==NULL or $row['finished']==0) {?>
+            |&nbsp; <a href="add_questions/id/<?php echo $row['id']?>">Add Question</a>
+          <?php } ?>
+        </td>
         </tr>
         <?php  } ?>
     </table>
