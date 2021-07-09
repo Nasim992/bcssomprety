@@ -10,6 +10,11 @@ define('DB_NAME','bcs_somprety');
 $BASE_URL_STUDENT = 'http://localhost/bcssomprety/student/';
 $BASE_URL = 'http://localhost/bcssomprety/';
 
+// Storage Link  for Student Folder
+$QUESTION_IMAGE_SRC = '../storage/questions/';
+$MODEL_BANNER_SRC = '../storage/banner/';
+
+
 // Database Table Name 
 $CREATE_COURSE = 'create_course';
 $USER = 'user';

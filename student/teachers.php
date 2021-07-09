@@ -10,7 +10,7 @@
                 <a class="btn teacher-btn form-control" href="my_courses">Your All Courses</a>
                 <a class="btn teacher-btn form-control" href="create_model_test">Create Model Test</a>
                 <a class="btn teacher-btn form-control" href="view_model_tests">Your All Model Tests</a>
-                <a class="btn teacher-btn form-control" href="/users/8/all_categories">Transactions</a>
+                <a class="btn teacher-btn form-control" href="transactions">Transactions</a>
             </div>
         </div>
         <div class="col-sm-4"></div>

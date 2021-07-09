@@ -14,4 +14,9 @@ RewriteRule ^student/view_model_question/id/([^/]*)$ /bcssomprety/student/view_m
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^student/edit_model_test/id/([^/]*)$ /bcssomprety/student/edit_model_test.php?id=$1 [L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
 ErrorDocument 404 http://localhost/bcssomprety/error

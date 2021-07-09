@@ -25,13 +25,13 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
             <td>
                 <a href="#">
                     <div style="width: 100%">
-                        <?php  echo $row['created_exams']; ?>
+                        <?php  echo $row['created_exams']?$row['created_exams']:"—"; ?>
                     </div>
                 </a>
             </td>
-            <td> <?php  echo $row['register_student']; ?></td>
+            <td> <?php  echo $row['register_student']?$row['register_student']:"—"; ?></td>
             <td> <?php  echo ($row['payment_status']==0?"Paid":"Free"); ?></td>
-            <td> <?php  echo $row['payment_amount']; ?></td>
+            <td> <?php  echo $row['payment_amount']?$row['payment_amount']:"—"; ?></td>
             <td>
                 <a href="edit_my_courses">Edit</a>
             </td>
