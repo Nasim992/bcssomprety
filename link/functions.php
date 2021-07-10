@@ -104,6 +104,18 @@ function all($table_name){
     return $dbh->query("SELECT * FROM ".$table_name."")->fetchAll();
 }
 
+// Function return all inside the table LIMIT 
+function allLIMIT($table_name,$start_from, $per_page_record){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$table_name." LIMIT $start_from, $per_page_record")->fetchAll();
+}
+
+// Function return all inside the table LIMITWHERE 
+function allLIMIT_WHERE($table_name,$start_from, $per_page_record,$COMPARE_FIELD,$id){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$table_name." LIMIT $start_from, $per_page_record WHERE $COMPARE_FIELD='$id'")->fetchAll();
+}
+
 // Functions returns all value comparing some field 
 function all_by_SPECIFIC_ID($TABLE_NAME,$COMPARE_FIELD,$ID){
     global $dbh;
