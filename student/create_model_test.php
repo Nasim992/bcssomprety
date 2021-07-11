@@ -4,10 +4,7 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
 ?>
 
 <!-- Model Test Creation -->
-<div class="container" id="flash-message">
-</div>
-</div>
-<br>
+
 <div class="content">
     <div class="new_model_test_box">
         <h3 class="text-center">নতুন মডেল টেস্ট তৈরী করুন</h3>

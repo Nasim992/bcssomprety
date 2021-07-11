@@ -69,7 +69,7 @@ $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$modelTestID);
                 </div>
                 <div class ="col-sm-4 col-md-4 col-xl-4 col-lg-4">
                 <?php if(!empty($questions ->question_image)){ ?>
-            <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$questions ->question_image ;?>" height="100px" width="200px"></span>
+            <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$questions ->question_image ;?>" height="75%" width="100%"></span>
             <?php } ?>
                </div>
             </div>
@@ -79,25 +79,25 @@ $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$modelTestID);
                     <div class="col-sm-3">
                     <span class="option_circle <?php echo $colorA; ?>">ক</span> <span class="result_option"><?php echo $option_A ->option_A; ?></span>
                     <?php if(!empty($option_A ->option_A_image)){ ?>
-                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_A ->option_A_image ;?>" height="50px" width="70px"></span>
+                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_A ->option_A_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <span class="option_circle <?php echo $colorB; ?>">খ</span> <span class="result_option"><?php echo $option_B ->option_B; ?></span>
-                        <?php if(!empty($option_B ->option_A_image)){ ?>
-                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_B ->option_B_image ;?>" height="50px" width="70px"></span>
+                        <?php if(!empty($option_B ->option_B_image)){ ?>
+                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_B ->option_B_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <span class="option_circle <?php echo $colorC; ?>">গ</span> <span class="result_option"><?php echo $option_C ->option_C; ?></span>
-                        <?php if(!empty($option_C ->option_A_image)){ ?>
-                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_C ->option_C_image ;?>" height="50px" width="70px"></span>
+                        <?php if(!empty($option_C ->option_C_image)){ ?>
+                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_C ->option_C_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                     <div class="col-sm-3">
                         <span class="option_circle <?php echo $colorD; ?>">ঘ</span> <span class="result_option"><?php echo $option_D ->option_D; ?></span>
                         <?php if(!empty($option_D ->option_D_image)){ ?>
-                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_D ->option_D_image ;?>" height="50px" width="70px"></span>
+                    <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_D ->option_D_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                 </div>
