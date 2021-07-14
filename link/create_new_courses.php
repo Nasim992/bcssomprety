@@ -8,14 +8,13 @@ if(isset($_POST['create_courses'])){
     if (isset($_SESSION['userInput'])){
         $userInput = $_SESSION["userInput"];
 } 
-
 $course_name=$_POST['course_name'];
 $payment_status=$_POST['payment_status'];
 $payment_status==='free'?$payment_status=1:$payment_status=0;
 $payment_amount=$_POST['payment_amount'];
 $payment_amount?$payment_amount:$payment_amount=NULL;
 $user_id=userID($userInput);
-$remaining_courses=remaining_courses($user_id);
+$remaining_courses=remainingBYID_DESC($USER,'remaining_courses',$user_id);
 $remaining_courses===NULL?$remaining_courses=NULL:$remaining_courses-=1;
 $remaining_courses==0?$remaining_courses=NULL:$remaining_courses;
 
@@ -30,11 +29,11 @@ if(empty($course_name)|| empty($user_id)) {
     redirect('../student/teachers');
 } else {
 
-$sql = "INSERT INTO create_course(user_id,course_name,payment_status,payment_amount,remaining_courses) VALUES(?,?,?,?,?)";
+$sql = "INSERT INTO create_course(user_id,course_name,payment_status,payment_amount) VALUES(?,?,?,?)";
 $query = $dbh->prepare($sql);
-$query->execute([$user_id,$course_name,$payment_status,$payment_amount,$remaining_courses]);
+$query->execute([$user_id,$course_name,$payment_status,$payment_amount]);
 
-if($query->rowCount() > 0) {
+if($query->rowCount() > 0 && updateOne($USER,$user_id,'remaining_courses',$remaining_courses)) {
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Course Created Successfully</p>
   </div>');

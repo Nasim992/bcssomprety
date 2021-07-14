@@ -8,7 +8,7 @@ $number_of_page = ceil ($total_number_of_results / $results_per_page);
 if (!isset ($_GET['page']) ) {  
   $page = 1;  
 } else {  
-  $page = $_GET['page'];
+  $page = intval($_GET['page']);
 } 
 
 $start_form = ($page-1) * $results_per_page;  
@@ -33,23 +33,22 @@ $page_name = 'exams.php';
         <div class="exam_notice_box">
             <div class="col-sm-12">
                 <?php
-        $payment_status =  returnSingleValue($CREATE_COURSE,'payment_status','id',$row['course_id']);
         if(!empty($row['pinned'])){ ?>
                 <div class="ribbon-wrapper">
-                    <div class="ribbon">Pin</div>
+                    <div class="ribbon bg-warning">Pin</div>
                 </div>
                 <?php }
-        else if ($payment_status==1) {?>
+        else if ($row['payment']==1) {?>
                 <div class="ribbon-wrapper">
-                    <div class="ribbon">Free</div>
+                    <div class="ribbon bg-success">Free</div>
                 </div>
                 <?php }else {?>
                 <div class="ribbon-wrapper">
-                    <div class="ribbon">Paid</div>
+                    <div class="ribbon bg-danger">Paid</div>
                 </div>
                 <?php  } ?>
                 <div class="links exam_box">
-                    <a href="model_exam/id/<?php echo  $row['id']; ?>"><?php echo $row['model_test_name']; ?></a>
+                    <a href="model_exam.php?id=<?php echo  $row['id']; ?>"><?php echo $row['model_test_name']; ?></a>
                     <br>
                     তারিখ: <?php echo stringToDate($row['model_test_date']); ?> |
                     সময়: <?php echo stringToTime($row['model_test_date']); ?>

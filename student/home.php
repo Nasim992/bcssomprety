@@ -3,6 +3,8 @@
 
 <!-- Notice and Carousel -->
 <?php include 'notice.php'; ?>
+<!-- CAtegories  -->
+<?php include'category.php'; ?>
 <!-- Teams  -->
 <?php include 'teams.php';?>
 <!-- Bottom Layout -->

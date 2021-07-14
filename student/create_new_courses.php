@@ -1,8 +1,8 @@
 <?php include 'toplayout.php';
 // Check that course is allocated or not
 $user_id=userID($userInput);
-$remaining_courses=remaining_courses($user_id);
-if($remaining_courses===NULL) {
+$remaining = remainingBYID_DESC($USER,'remaining_courses',$user_id);
+if($remaining===NULL) {
     // redirect('no_course_limit');
     echo "<script type='text/javascript'> document.location = 'no_course_limit'; </script>";
 }

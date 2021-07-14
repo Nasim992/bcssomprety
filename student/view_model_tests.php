@@ -30,19 +30,22 @@ $data = all_by_userID($MODEL_TEST,$user_id);
         <td><?php echo $row['duration']; ?></td>
         <td>
         <?php
-        if(returnSingleValue($CREATE_COURSE,'payment_status','id',$row['course_id'])==1){
+        if($row['payment']==1){
             echo "Free";
-        }else {  echo returnSingleValue($CREATE_COURSE,'payment_amount','id',$row['course_id']);}?>
+        }else {  
+            // echo returnSingleValue($CREATE_COURSE,'payment_amount','id',$row['course_id']);
+            echo "Paid";
+            }?>
         
        </td> 
         <td><?php echo empty($row['secure_pin'])?"—":$row['secure_pin']; ?></td>
         <td><?php echo empty($row['model_set'])?"—":$row['model_set']; ?></td>
         <td><?php echo empty($row['total_questions'])?"—":$row['total_questions']; ?></td>
         <td>
-          <a href="view_model_question/id/<?php echo $row['id']?>">Show</a>&nbsp;
-          |&nbsp; <a href="edit_model_test/id/<?php echo $row['id']?>">Edit</a>&nbsp;
+          <a href="view_model_question.php?id=<?php echo $row['id']?>">Show</a>&nbsp;
+          |&nbsp; <a href="edit_model_test.php?id=<?php echo $row['id']?>">Edit</a>&nbsp;
           <?php if ($row['finished'] ==NULL or $row['finished']==0) {?>
-            |&nbsp; <a href="add_questions/id/<?php echo $row['id']?>">Add Question</a>
+            |&nbsp; <a href="add_questions.php?id=<?php echo $row['id']?>">Add Question</a>
           <?php } ?>
         </td>
         </tr>

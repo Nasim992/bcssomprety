@@ -6,21 +6,4 @@ RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^student/add_questions/id/([^/]*)$ /bcssomprety/student/add_questions.php?id=$1 [L]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^student/view_model_question/id/([^/]*)$ /bcssomprety/student/view_model_question.php?id=$1 [L]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^student/edit_model_test/id/([^/]*)$ /bcssomprety/student/edit_model_test.php?id=$1 [L]
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^student/model_exam/id/([^/]*)$ /bcssomprety/student/model_exam.php?id=$1 [L]
-
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-ErrorDocument 404 http://localhost/bcssomprety/error
+ErrorDocument 404 https://bcsshomprity.com/error

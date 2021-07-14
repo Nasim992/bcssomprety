@@ -78,6 +78,7 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                     <div class="form-row">
                         <strong> কোর্স </strong>
                         <select id="category_select" class="form-control" name="model_test_category">
+                        <option value="free">Free model test</option>
                           <?php  foreach ($data as $row) { ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['course_name']; ?></option>
                           <?php } ?>
@@ -88,10 +89,10 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                     <div class="form-group">
                         <strong>মডেল টেস্টটি ফ্রি করুন </strong> &nbsp &nbsp &nbsp &nbsp
                         <input class="radio_btn" type="radio" value="free" name="model_test_payment"
-                            id="model_test_payment_free" />
+                            id="model_test_payment_free" checked/>
                         <label for="payment_হ্যা ">হ্যা </label>&nbsp &nbsp
                         <input class="radio_btn" type="radio" value="pay" name="model_test_payment"
-                            id="model_test_payment_pay" />
+                            id="model_test_payment_pay"/>
                         <label for="payment_না ">না </label>&nbsp &nbsp
                     </div>
                     <br>

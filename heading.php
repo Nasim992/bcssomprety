@@ -4,6 +4,7 @@ $month = date("M");
 $date = date("d");
 $year = date("Y");
 $finalDate = $day.", ".$month." ".$date.",".$year;
+$totalmember =  TotalNumberOfRows($USER);
 ?>
 <div class="header">
     <div class="row">
@@ -20,7 +21,7 @@ $finalDate = $day.", ".$month." ".$date.",".$year;
             </marquee>
         </div>
         <div class="right_header text-center">
-            সদস্য সংখ্যা: <?php echo englishToBangla('4'); ?>
+            সদস্য সংখ্যা: <?php echo englishToBangla($totalmember); ?>
         </div>
     </div>
 </div>

@@ -1,11 +1,11 @@
-<?php include 'toplayout.php';
-
-$course_data = all($CREATE_COURSE);
-
+<?php 
+$course_data = all_RANDOM_LIMIT($CREATE_COURSE,6);
 ?>
+<div class="container-fluid">
+    
 <div class="row bg-white">
     <div class="home_content">
-        <h4> সকল ক্যাটাগরি<span class="right_btn">
+        <h4> ক্যাটাগরি <span class="right_btn">
                 <a class="more_btn" href="categories">More &gt;</a>
             </span> </h4>
         <hr>
@@ -16,9 +16,9 @@ $course_data = all($CREATE_COURSE);
 </div>
 
 <div class="row">
-<?php foreach ($course_data as $row) { if($row['id']!=0){?>
+<?php foreach ($course_data as $row) { if($row['id']!=0) {?>
     <div class="col-md-4">
-        <a href="my_subscribed_courses">
+        <a href="categories">
         <div class="p-exam">
             <span class="cat_icon"><i class="fas fa-book-open"></i></span>
             <div class="p-exam-text">
@@ -29,10 +29,8 @@ $course_data = all($CREATE_COURSE);
         </div>
         </a>
     </div>
-    <?php } }?>
+    <?php } } ?>
 </div>
 </div>
 </div>
 </div>
-
-<?php include 'bottomlayout.php'; ?>

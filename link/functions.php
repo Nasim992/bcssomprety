@@ -100,12 +100,21 @@ function remaining_courses($user_id){
 // Function returns number (total number of rows where comparison)
 function returnSingleValue($TABLE_NAME,$SELECTED_FIELD,$COMPARE_FIELD,$id){
     global $dbh;
-    $sql = "SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."=?";
     $stmt = $dbh->prepare("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."=?");
     $stmt->execute([$id]); 
     $rcourse = $stmt->fetch();
     return $rcourse["$SELECTED_FIELD"];
 }
+
+// Function returns number (total number of rows where comparison)
+function returnSingleValueTWO_COMPARISON($TABLE_NAME,$SELECTED_FIELD,$COMPARE_FIELD1,$id1,$COMPARE_FIELD2,$id2){
+    global $dbh;
+    $stmt = $dbh->prepare("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD1."=? AND ".$COMPARE_FIELD2."=?");
+    $stmt->execute([$id1,$id2]); 
+    $rcourse = $stmt->fetch();
+    return $rcourse["$SELECTED_FIELD"];
+}
+
 
 // Function all users is equal to the userid 
 
@@ -119,6 +128,19 @@ function all($table_name){
     global $dbh;
     return $dbh->query("SELECT * FROM ".$table_name."")->fetchAll();
 }
+
+// Function all Randomly data limited
+function all_RANDOM_LIMIT($table_name,$LIMIT){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$table_name." ORDER BY RAND() LIMIT $LIMIT")->fetchAll();
+}
+
+// Function all Randomly data of id
+function all_RANDOM_ID($table_name,$COMPARE_FIELD,$id){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$table_name." WHERE $COMPARE_FIELD='$id' ORDER BY RAND()")->fetchAll();
+}
+
 
 // Function return all inside the table LIMIT 
 function allLIMIT($table_name,$start_from, $per_page_record){
@@ -137,6 +159,19 @@ function all_by_SPECIFIC_ID($TABLE_NAME,$COMPARE_FIELD,$ID){
     global $dbh;
     return $dbh->query("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."='$ID'")->fetchAll();
 }
+// Functions returns all value comparing some field 
+function all_by_SPECIFIC_ID_TWO($TABLE_NAME,$COMPARE_FIELD1,$ID1,$COMPARE_FIELD2,$ID2){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$TABLE_NAME." WHERE $COMPARE_FIELD1='$ID1' AND $COMPARE_FIELD2='$ID2'")->fetchAll();
+}
+
+// Functions returns all value comparing some field 
+function all_by_SPECIFIC_ID_TWO_NOT($TABLE_NAME,$COMPARE_FIELD1,$ID1,$COMPARE_FIELD2,$ID2){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$TABLE_NAME." WHERE $COMPARE_FIELD1='$ID1' AND $COMPARE_FIELD2!='$ID2'")->fetchAll();
+}
+
+
 
 // Functions Join Two Tables Full Join
 function twoTablesFULLJOIN($TABLE1,$TABLE1_ID,$TABLE2,$TABLE2_ID){
@@ -189,6 +224,43 @@ if($query->rowCount() > 0) {
 }else {
     return false;
 }
+}
+
+// Delete Transactions 
+function Delete_Table($TABLE_NAME,$FIELD_NAME,$id) {
+    global $dbh;
+    $sql = "DELETE FROM ".$TABLE_NAME." WHERE $FIELD_NAME=?";
+   $query = $dbh->prepare($sql);
+   $query->execute([$id]);
+   if($query->rowCount() > 0) {
+       return true;
+   }else {
+       return false;
+   }
+   }
+// Update One Column in Table 
+function updateOne_FIELDNAME($table_name,$id,$update_variable,$text,$FIELD_NAME) {
+    global $dbh;
+    $sql = "UPDATE ".$table_name." SET $update_variable=? WHERE $FIELD_NAME=?";
+   $query = $dbh->prepare($sql);
+   $query->execute([$text,$id]);
+   if($query->rowCount() > 0) {
+       return true;
+   }else {
+       return false;
+   }
+}
+// Update One Column in Table 
+function updateOne_FIELDNAME_TWO($table_name,$id,$update_variable,$text,$FIELD_NAME1,$FIELD_NAME2,$id2) {
+    global $dbh;
+    $sql = "UPDATE ".$table_name." SET $update_variable=? WHERE $FIELD_NAME1=? AND $FIELD_NAME2=?";
+   $query = $dbh->prepare($sql);
+   $query->execute([$text,$id,$id2]);
+   if($query->rowCount() > 0) {
+       return true;
+   }else {
+       return false;
+   }
 }
 
 // Convert English to bangla 

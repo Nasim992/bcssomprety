@@ -2,7 +2,7 @@
 
 // For Pagination 
 $results_per_page = 10;  
-$total_number_of_results = TotalNumberOfRows($MODEL_TEST);
+$total_number_of_results = TotalNumberOfRowsWhere($MODEL_TEST,'payment',1);
 $number_of_page = ceil ($total_number_of_results / $results_per_page);  
 
 if (!isset ($_GET['page']) ) {  
@@ -29,16 +29,15 @@ $page_name = 'free_exams.php';
     </div>
 
     <?php foreach ($final_pagination_results as $row) {
-    $payment_status =  returnSingleValue($CREATE_COURSE,'payment_status','id',$row['course_id']);
-    if ($payment_status==1) {?>
+    if ($row['payment']==1 && empty($row['pinned'])) {?>
     <div class="row">
         <div class="exam_notice_box">
             <div class="col-sm-12">
                 <div class="ribbon-wrapper">
-                    <div class="ribbon">Free</div>
+                    <div class="ribbon bg-success">Free</div>
                 </div>
                 <div class="links exam_box">
-                    <a href="#"><?php echo $row['model_test_name']; ?></a>
+                    <a href="model_exam.php?id=<?php echo  $row['id']; ?>"><?php echo $row['model_test_name']; ?></a>
                     <br>
                     তারিখ: <?php echo stringToDate($row['model_test_date']); ?> |
                     সময়: <?php echo stringToTime($row['model_test_date']); ?>

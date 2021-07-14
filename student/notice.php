@@ -12,15 +12,16 @@ $data = all($MODEL_TEST);
                             class="w-100" alt="Exam text will available soon">
                     </div>
                     <?php  foreach ($data as $row) { 
+                    if(!empty($row['image_name'])){
                     $source = '../storage/banner/'.$row['image_name'];
                     ?>
                     <div class="carousel-item">
-                        <a href="#">
+                        <a href="exams">
                             <img src="<?php echo $source; ?>" class=" w-100" alt="<?php echo $row['model_test_name']?>">
-                            <p class="text-center"><?php echo $row['model_test_name']?></p>
+                            <!-- <p class="text-center"><?php echo $row['model_test_name']?></p> -->
                         </a>
                     </div>
-                    <?php } ?>
+                    <?php } }?>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -55,18 +56,5 @@ $data = all($MODEL_TEST);
             আর সেই প্রত্যাশাই আমাদের বিসিএস সম্প্রীতি ওয়েবসাইট সেই পথে আগাবে। সম্প্রীতির বন্ধনে প্রতিটা মানুষকে সেবা
             দানের উদ্দেশ্য আমাদের এই ওয়েবসাইট তৈরির মহৎ উদ্দেশ্য।
         </p>
-    </div>
-</div>
-
-
-<div class="row bg-white">
-    <div class="home_content">
-        <h4> ক্যাটাগরি <span class="right_btn">
-                <a class="more_btn" href="categories">More &gt;</a>
-            </span> </h4>
-        <hr>
-
-        <div class="row">
-        </div>
     </div>
 </div>

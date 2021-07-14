@@ -76,7 +76,7 @@ if (isset($_SESSION['userInput'])){
                 <div class="field">
                     <b>পাসওয়ার্ড নিশ্চিত করুন</b>
                     <input autocomplete="new-password" class="form-control confirm_password" type="password"
-                        name="user_password_confirmation" id="user_password_confirmation" />
+                        name="user_password_confirmation" id="user_password_confirmation" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"/>
                     <span class="p-viewer2">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>

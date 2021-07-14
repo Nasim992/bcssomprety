@@ -9,7 +9,7 @@ if(empty($_GET['id'])){
 $modelTestID =  intval($modelTestID);
 $model_test_data = twoTablesFULLJOIN_WHERE($MODEL_TEST,'course_id',$CREATE_COURSE,'id','id',$modelTestID);
 
-if( TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userId)==0) {
+if(TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userId)==0) {
   echo "<script type='text/javascript'> document.location = 'create_model_test'; </script>";
 }
 
@@ -65,7 +65,6 @@ $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$modelTestID);
             <div class="row">
                 <div class ="col-sm-8 col-md-8 col-xl-8 col-lg-8">
                 <?php  echo $index." . ".$questions_statement; ?>
-            
                 </div>
                 <div class ="col-sm-4 col-md-4 col-xl-4 col-lg-4">
                 <?php if(!empty($questions ->question_image)){ ?>
