@@ -17,6 +17,10 @@ $user_id=userID($userInput);
 $course_id = $_POST['course_id'];
 
 
+$previousValue = returnSingleValue($CREATE_COURSE,'register_student','id',$course_id);
+$previousValue = $previousValue+1;
+
+
 if(empty($user_id) || empty($mobile_number)||empty($model_test_payment_method)) {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Required Field Can not be empty</p>
@@ -28,6 +32,7 @@ $query = $dbh->prepare($sql);
 $query->execute([$user_id,$course_id,$transaction_id,$model_test_payment_method,$mobile_number]);
 
 if($query->rowCount() > 0) {
+    updateOne_FIELDNAME($CREATE_COURSE,$course_id,'register_student',$previousValue,'id');
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Transaction Successfull.Wait for the confirmation</p>
   </div>');

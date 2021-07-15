@@ -1,4 +1,24 @@
-<?php include 'toplayout.php' ?>
+<?php include 'toplayout.php';
+$user_id = userID($userInput);
+// // For Pagination 
+// $results_per_page = 10;  
+// $total_number_of_results = TotalNumberOfRowsWhere($QUESTION_ANSWER,'user_id',$user_id);
+// $number_of_page = ceil ($total_number_of_results / $results_per_page);  
+
+// if (!isset ($_GET['page']) ) {  
+//   $page = 1;  
+// } else {  
+//   $page = intval($_GET['page']);
+// } 
+
+// $start_form = ($page-1) * $results_per_page;  
+
+$final_pagination_results = all_by_SPECIFIC_ID($QUESTION_ANSWER,'user_id',$user_id );
+
+// $page_name = 'participated_exams.php';
+
+
+?>
 
 <!-- Participated courses -->
 <div class="container">
@@ -16,45 +36,22 @@
             <th> মোট নম্বর </th>
             <th> তারিখ ও সময় </th>
         </tr>
+        <?php $index = 1;
+         foreach($final_pagination_results as $row) {?>
         <tr>
-            <td>1</td>
+            <td><?php echo $index;?></td>
             <td>
-                <a href="result.php?id=2">Bangla</a>
+                <a href="result.php?id=<?php echo $row['model_test_id']; ?>"><?php echo returnSingleValue($MODEL_TEST,'model_test_name','id',$row['model_test_id']); ?></a>
             </td>
-            <td>0</td>
-            <td>2</td>
-            <td>0</td>
-            <td>-1.0</td>
-            <td> 25-06-2021 12:12 AM </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>
-                <a href="/model_tests/11/result"></a>
-            </td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0.0</td>
-            <td> 25-06-2021 12:09 AM </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>
-                <a href="/model_tests/11/result"></a>
-            </td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0.0</td>
-            <td> 25-06-2021 12:07 AM </td>
-        </tr>
+            <td><?php echo $row['correct_answer']; ?></td>
+            <td><?php echo $row['wrong_answer']; ?></td>
+            <td><?php echo $row['skipped']; ?></td>
+            <td><?php echo $row['total_mark']; ?></td>
+            <td><?php echo stringToDate($row['created_at'])." ".stringToTime($row['created_at']); ?></td>
+        </tr> 
+        <?php $index= $index+1; } ?>
     </table>
     <br>
-
-    <div class="flickr_pagination">
-
-    </div>
     <br>
 
 </div>

@@ -68,6 +68,7 @@ function is_author_available($authoremail) {
     return $reviewered;
 }
 
+
 // Function Selecting User ID 
 function userID($userInput){
     global $dbh;
@@ -283,4 +284,18 @@ function stringToDate($date){
 function stringToTime($date){
     $date = strtotime($date);
     return date('h:i a', $date);
+}
+
+// Differerence of date
+function dateTimeDifference_TWO_DATES($start_date,$currentDate){
+// convertion string to date update_variable
+
+return strtotime($start_date)-strtotime($currentDate);
+}
+
+// Return id compare maximum number
+
+function all_by_SPECIFIC_ID_DESC($TABLE_NAME,$COMPARE_FIELD,$ID){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."='$ID' ORDER BY total_mark DESC")->fetchAll();
 }

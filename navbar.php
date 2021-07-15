@@ -20,21 +20,21 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
                 <?php  if (empty($userInput)){?>
-                <a class="nav-link" href="/bcssomprety"><b>Home</b><span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo $BASE_URL; ?>"><b>Home</b><span class="sr-only">(current)</span></a>
                 <?php }else { ?>
                 <a class="nav-link" href="student/home"><b>Home</b><span class="sr-only">(current)</span></a>
                 <?php } ?>
             </li>
             <li class="nav-item active">
                 <?php  if (empty($userInput)){?>
-                <a class="nav-link" href="/bcssomprety"><b>Exam</b><span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?php echo $BASE_URL; ?>"><b>Exam</b><span class="sr-only">(current)</span></a>
                 <?php }else { ?>
                 <a class="nav-link" href="exams"><b>Exam</b><span class="sr-only">(current)</span></a>
                 <?php } ?>
             </li>
             <li class="nav-item active">
                 <?php if(empty($userInput)){ ?>
-                <a class="nav-link btn btn-success text-white btn-block" href="/bcssomprety"><b>Login</b><span
+                <a class="nav-link btn btn-success text-white btn-block" href="<?php echo $BASE_URL; ?>"><b>Login</b><span
                         class="sr-only">(current)</span></a>
                 <?php }else { ?>
             <li class="nav-item active dropdown">

@@ -8,6 +8,7 @@ if(isset($_POST['create_model_test'])){
     if (isset($_SESSION['userInput'])){
         $userInput = $_SESSION["userInput"];
 } 
+
 $user_id=userID($userInput);
 $model_test_name=$_POST['model_test_name'];
 $model_test_examiner_name=$_POST['model_test_examiner_name'];
@@ -27,7 +28,10 @@ $banner_image_name = $_FILES['banner_image']['name'];
 $banner_image_type = $_FILES['banner_image']['type'];
 $banner_image_type_tmp = $_FILES['banner_image']['tmp_name'];
 
-echo $model_test_payment;
+$previousCategoryValue = returnSingleValue($CREATE_COURSE,'created_exams','id',$model_test_category);
+
+$previousCategoryValue = $previousCategoryValue+1;
+
 
 // Check Paid Unpaid Courses
 if($model_test_payment!=1 || empty($model_test_payment)){
@@ -60,7 +64,8 @@ $query = $dbh->prepare($sql);
 $query->execute([$user_id,$model_test_name,$model_test_examiner_name,$model_test_positive_mark,$model_test_negative_mark,$model_test_date,$model_test_duration,$model_test_set,$model_test_category,$model_test_payment,$model_test_pinned,$secure_pin,$banner_image_name,$banner_image_type]);
 
 if($query->rowCount() > 0) {
-
+    // Update craeted course field with
+    updateOne_FIELDNAME($CREATE_COURSE,$model_test_category,'created_exams',$previousCategoryValue,'id');
     // Store to the folder
     move_uploaded_file($banner_image_type_tmp,$banner_storage.$banner_image_name);
 
@@ -94,7 +99,7 @@ $query = $dbh->prepare($sql);
 $query->execute([$user_id,$model_test_name,$model_test_examiner_name,$model_test_positive_mark,$model_test_negative_mark,$model_test_date,$model_test_duration,$model_test_set,$model_test_category,$model_test_payment,$model_test_pinned,$secure_pin,$banner_image_name,$banner_image_type]);
 
 if($query->rowCount() > 0) {
-
+    updateOne_FIELDNAME($CREATE_COURSE,$model_test_category,'created_exams',$previousCategoryValue,'id');
     // Store to the folder
     move_uploaded_file($banner_image_type_tmp,$banner_storage.$banner_image_name);
 

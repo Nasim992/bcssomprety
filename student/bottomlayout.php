@@ -69,6 +69,37 @@
             $("#staticBackdrop").modal('show');
         });
        </script>
+       <script>
+           $(".start_exam_btn").on('click', function(){
+        $('.start_exam_btn').hide();
+        $('.exam_script').show();
+        $('.exam_timer').show();
+
+        let min = parseInt(document.getElementById('exam_duration').getAttribute('data-value')) ;
+        let totalSec = min * 60 * 1000;
+        let intervalVar = setInterval(intervalTimer, 1000);
+
+        min--;
+        function intervalTimer() {
+            totalSec--;
+            let sec = totalSec % 60;
+            if(totalSec == 0){
+                clearInterval(intervalVar);
+            }
+            document.getElementById("mins").innerHTML = min;
+            document.getElementById("secs").innerHTML = sec;
+            if(sec == 0){
+                min--;
+            }
+        }
+
+        setTimeout(function(){
+            document.getElementById('new_model_test_form').click();
+        }, totalSec);
+    });
+
+       </script>
+       
 
        </body>
 

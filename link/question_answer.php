@@ -27,7 +27,6 @@ foreach ($alldata as $row) {
     }else {
         $wrongAnswer++;
     }
-
     array_push($answerArray,$question_Number,$answer);
 }
 
@@ -35,12 +34,12 @@ $positive_mark = $model_test_positive_mark * $correctAnswer;
 $negative_mark = $model_test_negative_mark * $wrongAnswer;
 $total_mark = $positive_mark - $negative_mark;
 $total_mark<=0?$total_mark=0:$total_mark;
-$answerArray_JSON = json_encode($answerArray);
+$answerArray_JSON = implode(",",$answerArray);
 
-$sql = "INSERT INTO ".$QUESTION_ANSWER."(user_id,model_test_id,skipped,correct_answer,wrong_answer,total_mark,all_answer) VALUES(?,?,?,?,?,?,?)";
+$sql = "INSERT INTO ".$QUESTION_ANSWER."(user_id,model_test_id,skipped,correct_answer,wrong_answer,total_mark,positive_mark,negative_mark,all_answer) VALUES(?,?,?,?,?,?,?,?,?)";
 $query = $dbh->prepare($sql);
 
-$query->execute([$user_id,$model_test_id,$skipped,$correctAnswer,$wrongAnswer,$total_mark,$answerArray_JSON]);
+$query->execute([$user_id,$model_test_id,$skipped,$correctAnswer,$wrongAnswer,$total_mark,$positive_mark,$negative_mark,$answerArray_JSON]);
 
 if($query->rowCount() > 0) {
 

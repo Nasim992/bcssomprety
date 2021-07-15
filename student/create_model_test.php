@@ -28,15 +28,15 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                 <div class="col-md-6">
                     <div class="form-row">
                         <strong> সঠিক উত্তরের মান </strong>
-                        <input autocomplete="off" class="form-control" type="number" value="1" min="1"
-                            name="model_test_positive_mark" id="model_test_mark" placeholder="1"/>
+                        <input autocomplete="off" class="form-control" type="number" value="1" step=any min="1"
+                            name="model_test_positive_mark" id="model_test_mark" placeholder="1.0"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <strong>নেগেটিভ নম্বর </strong>
                         <input step="any" class="form-control" type="number"
-                            name="model_test_negative_mark" value="0" min="0" id="model_test_negative_mark"placeholder="0.0"/>
+                            name="model_test_negative_mark" value="0" min="0" step=any id="model_test_negative_mark"placeholder="0.0"/>
                     </div>
                 </div>
             </div> 

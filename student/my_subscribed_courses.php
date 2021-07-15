@@ -67,7 +67,7 @@ $course_data = all_by_SPECIFIC_ID_TWO_NOT($CREATE_COURSE,'payment_status',0,'use
           ?>
         </td>
       </tr>
-    <?php }else { echo "<b class='text-info'>আপনি এখনো কোনো কোর্স সাবস্ক্রাইব করেন নাই</b>";}}?>
+    <?php }}?>
   </table>
   <br>
 </div>

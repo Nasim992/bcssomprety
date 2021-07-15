@@ -17,9 +17,9 @@ if(empty($username)|| empty($email)|| empty($phone) || empty($password)) {
     redirect('../signup');
 } else {
 if($password==$repeatpassword) { 
-if(is_author_available($email)>0) {
+if(is_author_available($email)>0 || TotalNumberOfRowsWhere($USER,'phone',$phone)>0) {
     set_message('<div class="container p-2">
-    <p class="alert alert-danger alert-dismissible"id="message">Email Already is in use.Try Different Email</p>
+    <p class="alert alert-danger alert-dismissible"id="message">Email or Contact Already is in use.Try Different Email or contact</p>
     </div>');
     redirect('../signup');
 }else
@@ -40,7 +40,7 @@ if($query->rowCount() > 0)
     set_message('<div class="container p-2">
       <p class="alert alert-success alert-dismissible" id="message">Registration Successfull.Now Logged in to the System</p>
     </div>');
-    redirect('/bcssomprety');
+    redirect($BASE_URL);
 } else{
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>

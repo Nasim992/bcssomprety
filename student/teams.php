@@ -25,7 +25,7 @@
 
     <div class="second_box">
       <div class="pe2">
-        <img alt="Picture of Ariful Islam Nadeem" src="../images/Arif-57b00f1605aef56cb67fe76ab01a498b925100b68035db9075ec81be8e21a410.jpg" />
+        <img alt="Picture of Ariful Islam Nadeem" src="../images/Nadeem-a53e46edd7a6610172d811ae8e3f671bc1e74ba08b76789a14c025d320180c75.jpg" />
         <div class="p-name">Ariful Islam</div>
       </div>
 

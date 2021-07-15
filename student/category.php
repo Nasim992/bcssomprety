@@ -5,7 +5,7 @@ $course_data = all_RANDOM_LIMIT($CREATE_COURSE,6);
     
 <div class="row bg-white">
     <div class="home_content">
-        <h4> ক্যাটাগরি <span class="right_btn">
+        <h4> কোর্স <span class="right_btn">
                 <a class="more_btn" href="categories">More &gt;</a>
             </span> </h4>
         <hr>
@@ -13,7 +13,7 @@ $course_data = all_RANDOM_LIMIT($CREATE_COURSE,6);
         <div class="row">
         </div>
     </div>
-</div>
+</div> 
 
 <div class="row">
 <?php foreach ($course_data as $row) { if($row['id']!=0) {?>

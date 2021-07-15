@@ -7,6 +7,16 @@ if (!isset ($_GET['id']) ) {
   $model_test_id  = intval($_GET['id']);  
 } 
 
+// Exam is started or not checking 
+$database_start_date = returnSingleValue($MODEL_TEST,'model_test_date','id',$model_test_id);
+$currentDate = date("Y-m-d h:i A");
+if(dateTimeDifference_TWO_DATES($database_start_date ,$currentDate)>0){
+  set_message('<div class="container p-2">
+  <p class="alert alert-warning alert-dismissible" id="message">Sorry! Exam is not Started Yet</p>
+  </div>');
+  echo "<script type='text/javascript'> document.location = 'exams'; </script>";
+}
+
 // Exam is already given or not
 if(TotalNumberOfRowsWhereTWO_AND($QUESTION_ANSWER,'user_id','model_test_id',$session_user_id,$model_test_id)>=1){
   set_message('<div class="container p-2">
@@ -19,6 +29,9 @@ $totalNumberOfRowsExists = TotalNumberOfRowsWhere($MODEL_TEST,'id',$model_test_i
 
 // Retrive Model Test ID
 if($model_test_id=='not_found' || $totalNumberOfRowsExists==0){
+  set_message('<div class="container p-2">
+  <p class="alert alert-warning alert-dismissible" id="message">This model test is not available</p>
+  </div>');
   echo "<script type='text/javascript'> document.location = 'exams'; </script>";
 }else {
   $model_test_data = all_by_SPECIFIC_ID($MODEL_TEST,'id',$model_test_id);
@@ -86,7 +99,7 @@ $questions_data = all_RANDOM_ID($QUESTIONS,'model_test_id',$model_test_id);
             <?php if(!empty($row['course_id'])){?>
             বিষয়: <?php echo returnSingleValue($CREATE_COURSE,'course_name','id',$row['course_id']) ?> <br>
             <?php } ?>
-            <div id="exam_duration" data-value="<%= @model_test.duration %>">
+            <div id="exam_duration" data-value="<?php echo $row['duration']; ?>">
                 মোট সময়: <?php echo $row['duration']; ?> মিনিট
                 <?php } ?>
             </div>
@@ -94,11 +107,10 @@ $questions_data = all_RANDOM_ID($QUESTIONS,'model_test_id',$model_test_id);
     </div>
     <hr>
 
-    <p class="exam_timer"> <span id="mins"></span>:<span id="secs"></span></p>
-
+<p class="exam_timer"> <span id="mins"></span>:<span id="secs"></span></p>
 <button class="start_exam_btn form-control btn btn-success">Start Exam</button>
-<!-- <div class="exam_script"> -->
-  <div>
+<div class="exam_script">
+  <!-- <div> -->
   <?php $count = 1;
    foreach ($questions_data  as $row) { 
     $questions = json_decode($row['questions']);
@@ -171,7 +183,7 @@ $questions_data = all_RANDOM_ID($QUESTIONS,'model_test_id',$model_test_id);
         <?php } ?>
       <input type="hidden" name="user_id" value="<?php echo $session_user_id;?>">
       <input type="hidden" name="model_test_id" value="<?php echo $model_test_id;?>">
-      <button class="btn btn-success btn-block" type="submit" name="submit_answer">Submit</button>
+      <button class="btn btn-success btn-block" type="submit" id="new_model_test_form" name="submit_answer">Submit</button>
       </form>
     </div>
 </div>

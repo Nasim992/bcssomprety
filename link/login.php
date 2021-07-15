@@ -27,6 +27,6 @@ if(isset($_POST['login'])){
                   </div>
             </div>
         ');
-        redirect('/bcssomprety');
+        redirect($BASE_URL);
     }
 }

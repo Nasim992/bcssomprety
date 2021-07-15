@@ -3,9 +3,10 @@
 $course_data = all($CREATE_COURSE);
 
 ?>
+<div class="container-fluid">
 <div class="row bg-white">
     <div class="home_content">
-        <h4> সকল ক্যাটাগরি<span class="right_btn">
+        <h4> সকল কোর্স<span class="right_btn">
                 <a class="more_btn" href="categories">More &gt;</a>
             </span> </h4>
         <hr>
@@ -30,6 +31,7 @@ $course_data = all($CREATE_COURSE);
         </a>
     </div>
     <?php } }?>
+</div>
 </div>
 </div>
 </div>
