@@ -78,7 +78,7 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                     <div class="form-row">
                         <strong> কোর্স </strong>
                         <select id="category_select" class="form-control" name="model_test_category">
-                        <option value="free">Free model test</option>
+                        <option value="1">Free model test</option>
                           <?php  foreach ($data as $row) { ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['course_name']; ?></option>
                           <?php } ?>

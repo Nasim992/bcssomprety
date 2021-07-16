@@ -6,7 +6,6 @@ if (!isset ($_GET['id']) ) {
 } else {  
   $model_test_id  = intval($_GET['id']);  
 } 
-
 // Exam is started or not checking 
 $database_start_date = returnSingleValue($MODEL_TEST,'model_test_date','id',$model_test_id);
 $currentDate = date("Y-m-d h:i A");

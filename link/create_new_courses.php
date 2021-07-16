@@ -14,7 +14,7 @@ $payment_status==='free'?$payment_status=1:$payment_status=0;
 $payment_amount=$_POST['payment_amount'];
 $payment_amount?$payment_amount:$payment_amount=NULL;
 $user_id=userID($userInput);
-$remaining_courses=remainingBYID_DESC($USER,'remaining_courses',$user_id);
+$remaining_courses=returnSingleValue($USER,'remaining_courses','id',$user_id);
 $remaining_courses===NULL?$remaining_courses=NULL:$remaining_courses-=1;
 $remaining_courses==0?$remaining_courses=NULL:$remaining_courses;
 

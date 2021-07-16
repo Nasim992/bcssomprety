@@ -117,23 +117,13 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
         $colorB_Wrong = '';
         $colorC_Wrong = '';
         $colorD_Wrong = '';
-        if($questions->correct_answer!=$question_answer_array_data[$indexColor] && $question_answer_array_data[$indexColor]!=0){$colorA_Wrong = 'red_bg';}
-        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && $question_answer_array_data[$indexColor]!=0) {$colorB_Wrong = 'red_bg';}
-        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && $question_answer_array_data[$indexColor]!=0) { $colorC_Wrong = 'red_bg';}
-        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && $question_answer_array_data[$indexColor]!=0) {$colorD_Wrong= 'red_bg';}
+        if($questions->correct_answer!=$question_answer_array_data[$indexColor] && !empty($question_answer_array_data[$indexColor])){$colorA_Wrong = 'red_bg';}
+        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && !empty($question_answer_array_data[$indexColor])) {$colorB_Wrong = 'red_bg';}
+        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && !empty($question_answer_array_data[$indexColor])) { $colorC_Wrong = 'red_bg';}
+        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && !empty($question_answer_array_data[$indexColor])) {$colorD_Wrong= 'red_bg';}
 
-        // Selecting Wrong Ans 
-        $colorA_skipped = '';
-        $colorB_skipped = '';
-        $colorC_skipped = '';
-        $colorD_skipped = '';
-        if($question_answer_array_data[$indexColor]==0)
-        {
-            $colorA_skipped = 'orange_bg';
-            $colorB_skipped = 'orange_bg';
-            $colorC_skipped = 'orange_bg';
-            $colorD_skipped = 'orange_bg';
-        }
+        $indexColor = $indexColor+2;
+
 
       ?>
         <div class="question_box">
@@ -176,8 +166,9 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
                     </div>
                 </div>
         </div>
-        <?php $index=$index+1;
-              $indexColor = $indexColor+2;
+        <?php 
+        $index=$index+1;
+              
     } ?>
     </div>
 </div>

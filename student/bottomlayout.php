@@ -58,7 +58,7 @@
             datepicker: true,
             format: `Y-m-d h:m A`,
             formatTime: 'g:i a',
-            step: 5,
+            step: 1,
             minDate: 0,
             validateOnBlur: false,
             useCurrent: false

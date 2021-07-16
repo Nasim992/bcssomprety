@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:#FFDE17;">
     <?php  if (empty($userInput)){?>
-    <a class="navbar-brand" href="/bcssomprety">
+    <a class="navbar-brand" href="<?php echo $BASE_URL; ?>">
         <img class="logo" src="images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png">
         <img class="logo" src="images/BCSS_typo-811b50effac7681ad86c2ea85205bbd4c75bdbf6a7dc0476736d480b863e075d.png">
     </a>

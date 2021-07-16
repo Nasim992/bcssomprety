@@ -20,12 +20,15 @@ foreach ($alldata as $row) {
     // Get the correct Answer form Database
     $questions = json_decode($row['questions']);
     empty($_POST["question_id".$row['id']])?$question_Number=0:$question_Number=$_POST["question_id".$row['id']];
-    empty( $_POST["question_answer".$row['id']])?$answer=0:$answer=$_POST["question_answer".$row['id']];
-    if($answer ==0){  $skipped++; }
-    else if($questions->correct_answer==$answer){
+    empty($_POST["question_answer".$row['id']])?$answer=0:$answer=$_POST["question_answer".$row['id']];
+     if($questions->correct_answer==$_POST["question_answer".$row['id']]  && !empty( $_POST["question_answer".$row['id']]))
+    {
         $correctAnswer++;
-    }else {
+    }else if($questions->correct_answer!=$answer && !empty( $_POST["question_answer".$row['id']]))
+    {
         $wrongAnswer++;
+    }else {
+        $skipped++;
     }
     array_push($answerArray,$question_Number,$answer);
 }

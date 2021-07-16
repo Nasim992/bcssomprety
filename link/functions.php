@@ -289,8 +289,9 @@ function stringToTime($date){
 // Differerence of date
 function dateTimeDifference_TWO_DATES($start_date,$currentDate){
 // convertion string to date update_variable
-
-return strtotime($start_date)-strtotime($currentDate);
+$timeAdded = 4*60*60;
+$t = strtotime($currentDate)+$timeAdded;
+return strtotime($start_date)-$t;
 }
 
 // Return id compare maximum number

@@ -57,6 +57,13 @@ if (isset($_SESSION['userInput'])){
     setTimeout(function() {
         $("#message").hide();
     }, 3000);
+    $(".p-viewer4").on('click',function() {
+        if ($(".confirm_password").attr('type') === 'password') {
+            $(".confirm_password").attr('type', 'text');
+        } else {
+            $(".confirm_password").attr('type', 'password');
+        }
+    });
     </script>
 </body>
 

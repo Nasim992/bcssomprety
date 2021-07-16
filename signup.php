@@ -65,7 +65,7 @@ if (isset($_SESSION['userInput'])){
                 <br>
                 <div class="field">
                     <b>পাসওয়ার্ড</b>
-                    <em>(আপনার পছন্দমতো কমপক্ষে 6 অক্ষরের একটি পাসওয়ার্ড দিন)</em>
+                    <em>(আপনার পছন্দমতো কমপক্ষে ৮ অক্ষরের বা তার বেশি একটি বড় হাতের অক্ষর একটি ছোট হাতের অক্ষর আর নাম্বার দিন)</em>
                     <input autocomplete="new-password" class="form-control password" type="password"
                         name="user_password" id="user_password" />
                     <span class="p-viewer">
@@ -113,6 +113,29 @@ if (isset($_SESSION['userInput'])){
     setTimeout(function() {
         $("#message").hide();
     }, 3000);
+    $(".p-viewer").on('click',function() {
+        if ($(".password").attr('type') === 'password') {
+            $(".password").attr('type', 'text');
+        } else {
+            $(".password").attr('type', 'password');
+        }
+    });
+
+    $(".p-viewer2").on('click',function() {
+        if ($(".confirm_password").attr('type') === 'password') {
+            $(".confirm_password").attr('type', 'text');
+        } else {
+            $(".confirm_password").attr('type', 'password');
+        }
+    });
+
+    $(".p-viewer3").on('click',function() {
+        if ($(".current_password").attr('type') === 'password') {
+            $(".current_password").attr('type', 'text');
+        } else {
+            $(".current_password").attr('type', 'password');
+        }
+    });
     </script>
 
 </body>

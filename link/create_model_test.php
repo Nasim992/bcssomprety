@@ -35,7 +35,7 @@ $previousCategoryValue = $previousCategoryValue+1;
 
 // Check Paid Unpaid Courses
 if($model_test_payment!=1 || empty($model_test_payment)){
-    if($model_test_category=='free'){
+    if($model_test_category=='1'){
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">You cannot make the paid model test under unpaid courses</p>
     </div>');
