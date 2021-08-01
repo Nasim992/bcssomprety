@@ -35,7 +35,7 @@ $page_name = 'pinned_exams.php';
         <div class="exam_notice_box">
             <div class="col-sm-12">
                 <div class="ribbon-wrapper">
-                    <div class="ribbon bg-danger">Pin</div>
+                    <div class="ribbon bg-warning">Pin</div>
                 </div>
                 <div class="links exam_box">
                     <a href="model_exam.php?id=<?php echo  $row['id']; ?>"><?php echo $row['model_test_name']; ?></a>

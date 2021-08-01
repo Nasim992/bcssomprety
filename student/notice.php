@@ -1,5 +1,21 @@
 <?php 
 $data = all($MODEL_TEST);
+// For Pagination 
+$results_per_page = 3;  
+$total_number_of_results = TotalNumberOfRows($NOTICE);
+$number_of_page = ceil ($total_number_of_results / $results_per_page);  
+
+if (!isset ($_GET['page']) ) {  
+  $page = 1;  
+} else {  
+  $page = intval($_GET['page']);
+} 
+
+$start_form = ($page-1) * $results_per_page;  
+
+$final_pagination_results = allLIMIT_DESC($NOTICE,$start_form , $results_per_page,'id');
+
+$page_name = 'home.php';
 ?>
 <div class="content pt-3">
     <div class="row">
@@ -39,14 +55,58 @@ $data = all($MODEL_TEST);
                 <h5><i class="fas fa-bullhorn"></i> &nbsp; নোটিশ বোর্ড</h5>
                 <hr>
                 <div class="inner_notice_box">
-                    <ul>
-                        <h3>Notice Append Here</h3>
+                    <ul class="list-group">
+                    <?php 
+                    if($total_number_of_results==0){
+                        echo "<h5>No Notice Created Yet!</h5>";
+                    }
+                    
+                    foreach ($final_pagination_results as $rows) {
+                        $notice_file_path = $NOTICE_SRC.$rows['notice_file_name'];
+                        ?>
+                       <li class="list-group-item"><?php
+                        echo "<b style='font-size:17px;'> ".$rows["notice"]." </b><br>";
+
+                        if(!empty($rows['notice_file_name'])){ ?>
+                            <a href="<?php echo $notice_file_path ?>" target="_blank"><small>Download Notice File</small></a>
+                        <?php }else { echo "<small class='text-info'>No file added</small>";} ?>
+                        </li> 
+                    <?php } ?>
+  
                     </ul>
                 </div>
-                <div class="flickr_pagination">
-
-                </div>
             </div>
+            <div class="flickr_pagination">
+               <!-- Pagination -->
+               <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <?php 
+                if($page <=1){?>
+            <li class="page-item disabled">
+                <a class="page-link" href="<?php echo $page_name;?>?page=<?php echo $page-1; ?>" aria-disabled="true">Previous</a>
+            </li>
+            <?php }else { ?>
+            <li class="page-item">
+                <a class="page-link" href="<?php echo $page_name;?>?page=<?php echo $page-1; ?>">Previous</a>
+            </li>
+            <?php } 
+            for($i = 1; $i<= $number_of_page; $i++) {
+              $page_link = $page_name.'?page='.$i;
+              ?>
+            <li class="page-item"><a class="page-link" href="<?php echo $page_link; ?>"><?php echo $i; ?></a></li>
+            <?php }  
+                if($page >=$number_of_page){?>
+            <li class="page-item disabled">
+                <a class="page-link" href="<?php echo $page_name;?>?page=<?php echo $page+1; ?>" aria-disabled="true">Next</a>
+            </li>
+            <?php }else { ?>
+            <li class="page-item">
+                <a class="page-link" href="<?php echo $page_name;?>?page=<?php echo $page+1; ?>">Next</a>
+            </li>
+            <?php } ?>
+        </ul>
+    </nav>
+                </div>
         </div>
     </div>
 

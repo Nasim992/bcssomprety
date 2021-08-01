@@ -10,6 +10,7 @@ if(isset($_POST['create_model_test'])){
 } 
 
 $user_id=userID($userInput);
+$userType = returnSingleValue($USER,'type','id',$user_id);
 $model_test_name=$_POST['model_test_name'];
 $model_test_examiner_name=$_POST['model_test_examiner_name'];
 $model_test_positive_mark = $_POST['model_test_positive_mark'];
@@ -17,7 +18,7 @@ $model_test_negative_mark = $_POST['model_test_negative_mark'];
 $model_test_date = $_POST['model_test_date'];
 $model_test_duration = $_POST['model_test_duration'];
 $model_test_set = $_POST['model_test_set'];
-$model_test_category = $_POST['model_test_category'];
+$model_test_category = $_POST['model_test_category']; 
 $model_test_payment = $_POST['model_test_payment'];
 $model_test_payment=="free"?$model_test_payment=1:$model_test_payment=NULL;
 $model_test_pinned = $_POST['model_test_pinned'];
@@ -106,12 +107,13 @@ if($query->rowCount() > 0) {
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Model Test Created Successfully</p>
   </div>');
-  redirect('../student/add_questions');
+  $userType=='admin'?redirect('../admin/add_questions'):redirect('../student/add_questions');
+//   redirect('../student/add_questions');
 }else {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>
     </div>');
-    redirect('../student/create_model_test');
+    $userType=='admin'?redirect('../admin/create_model_test'):redirect('../student/create_model_test');
 }
 }
 }

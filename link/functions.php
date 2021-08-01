@@ -45,7 +45,8 @@ function checkLoggedInOrNot() {
 // Function Checked that author is logged in or not
 function IsUserLoggedIn($userInput){
     global $dbh;
-    $sql = "SELECT user.id,user.name,user.phone,user.email,user.institute,user.password from user where email='$userInput' OR phone='$userInput'"; 
+    global $BASE_URL;
+    $sql = "SELECT user.id,user.name,user.phone,user.email,user.institute,user.password,user.type from user where (email='$userInput' OR phone='$userInput') AND type='user'"; 
     $query = $dbh->prepare($sql); 
     $query->execute(); 
     $results=$query->fetchAll(PDO::FETCH_OBJ); 
@@ -54,9 +55,27 @@ function IsUserLoggedIn($userInput){
         set_message('<div class="container p-2">
         <p class="alert alert-warning alert-dismissible" id="message">You are not Logged in. Try to logged first.</p>
         </div>');
-        redirect('/bcssomprety');
+        redirect($BASE_URL);
     }
-} 
+}
+
+// Function Checked that author is logged in or not
+function IsAdminLoggedIn($userInput){
+    global $dbh;
+    global $BASE_URL_ADMIN;
+    $sql = "SELECT user.id,user.name,user.phone,user.email,user.institute,user.password,user.type from user where (email='$userInput' OR phone='$userInput') AND type='admin'"; 
+    $query = $dbh->prepare($sql); 
+    $query->execute(); 
+    $results=$query->fetchAll(PDO::FETCH_OBJ); 
+    if($query->rowCount() === 0) 
+    {
+        set_message('<div class="container p-2">
+        <p class="alert alert-warning alert-dismissible" id="message">You are not Logged in. Try to logged first.</p>
+        </div>');
+        redirect($BASE_URL_ADMIN);
+    }
+}
+
 // Author is Available or not
 function is_author_available($authoremail) {
     global $dbh;
@@ -123,6 +142,13 @@ function all_by_userID($table_name,$user_id){
 global $dbh;
 return $dbh->query("SELECT * FROM ".$table_name." WHERE user_id='$user_id'")->fetchAll();
 }
+// Function all users is equal to the userid 
+
+function all_by_userID_NOT($table_name,$COMPARE_FIELD,$id){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$table_name." WHERE $COMPARE_FIELD!='$id'")->fetchAll();
+}
+    
 
 // Function return all inside the table 
 function all($table_name){
@@ -148,6 +174,13 @@ function allLIMIT($table_name,$start_from, $per_page_record){
     global $dbh;
     return $dbh->query("SELECT * FROM ".$table_name." LIMIT $start_from, $per_page_record")->fetchAll();
 }
+
+// Function return all inside the table LIMIT 
+function allLIMIT_DESC($table_name,$start_from, $per_page_record,$id){
+    global $dbh;
+    return $dbh->query("SELECT * FROM ".$table_name." ORDER BY ".$id." DESC LIMIT $start_from, $per_page_record")->fetchAll();
+}
+
 
 // Function return all inside the table LIMITWHERE 
 function allLIMIT_WHERE($table_name,$start_from, $per_page_record,$COMPARE_FIELD,$id){
@@ -227,7 +260,7 @@ if($query->rowCount() > 0) {
 }
 }
 
-// Delete Transactions 
+// Delete By ID 
 function Delete_Table($TABLE_NAME,$FIELD_NAME,$id) {
     global $dbh;
     $sql = "DELETE FROM ".$TABLE_NAME." WHERE $FIELD_NAME=?";

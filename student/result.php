@@ -37,6 +37,7 @@ for($i=0;$i<count($total_answer_question_max);$i++){
 $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$model_test_id);
 
 $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']);
+
 ?>
 
 
@@ -108,23 +109,25 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
         $colorB = '';
         $colorC = '';
         $colorD = '';
+        
         if($questions->correct_answer=='A'){$colorA = 'green_bg';}
         else if($questions->correct_answer=='B') {$colorB = 'green_bg';}
         else if($questions->correct_answer=='C') {$colorC = 'green_bg';}
         else if($questions->correct_answer=='D') {$colorD = 'green_bg';}
+        
         // Selecting Wrong Ans 
         $colorA_Wrong = '';
         $colorB_Wrong = '';
         $colorC_Wrong = '';
         $colorD_Wrong = '';
-        if($questions->correct_answer!=$question_answer_array_data[$indexColor] && !empty($question_answer_array_data[$indexColor])){$colorA_Wrong = 'red_bg';}
-        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && !empty($question_answer_array_data[$indexColor])) {$colorB_Wrong = 'red_bg';}
-        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && !empty($question_answer_array_data[$indexColor])) { $colorC_Wrong = 'red_bg';}
-        else if($questions->correct_answer!=$question_answer_array_data[$indexColor]  && !empty($question_answer_array_data[$indexColor])) {$colorD_Wrong= 'red_bg';}
-
-        $indexColor = $indexColor+2;
-
-
+        
+        if($questions->correct_answer!=$question_answer_array_data[$indexColor]){
+            if($question_answer_array_data[$indexColor]=='A'){$colorA_Wrong='red_bg';}
+            else if($question_answer_array_data[$indexColor]=='B'){$colorB_Wrong='red_bg';}
+            else if($question_answer_array_data[$indexColor]=='C'){$colorC_Wrong='red_bg';}
+            else if($question_answer_array_data[$indexColor]=='D'){$colorD_Wrong='red_bg';}
+        }
+    
       ?>
         <div class="question_box">
             <div class="row">
@@ -141,33 +144,45 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
             
                 <div class="row">
                     <div class="col-sm-3">
-                    <span class="option_circle <?php echo $colorA;echo $colorA_Wrong; ?>">ক</span> <span class="result_option"><?php echo $option_A ->option_A; ?></span>
+                    <span class="option_circle <?php echo $colorA." ".$colorA_Wrong." ".$colorA_Wrong1; ?>">ক</span> <span class="result_option"><?php echo $option_A ->option_A; ?></span>
                     <?php if(!empty($option_A ->option_A_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_A ->option_A_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                     <div class="col-sm-3">
-                        <span class="option_circle <?php echo $colorB;echo $colorB_Wrong; ?>">খ</span> <span class="result_option"><?php echo $option_B ->option_B; ?></span>
+                        <span class="option_circle <?php echo $colorB." ". $colorB_Wrong." ". $colorB_Wrong1; ?>">খ</span> <span class="result_option"><?php echo $option_B ->option_B; ?></span>
                         <?php if(!empty($option_B ->option_B_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_B ->option_B_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                     <div class="col-sm-3">
-                        <span class="option_circle <?php echo $colorC;echo $colorC_Wrong; ?>">গ</span> <span class="result_option"><?php echo $option_C ->option_C; ?></span>
+                        <span class="option_circle <?php echo $colorC." ".$colorC_Wrong." ". $colorC_Wrong1; ?>">গ</span> <span class="result_option"><?php echo $option_C ->option_C; ?></span>
                         <?php if(!empty($option_C ->option_C_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_C ->option_C_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                     <div class="col-sm-3">
-                        <span class="option_circle <?php echo $colorD;echo $colorD_Wrong; ?>">ঘ</span> <span class="result_option"><?php echo $option_D ->option_D; ?></span>
+                        <span class="option_circle <?php echo $colorD." ".$colorD_Wrong." ". $colorD_Wrong1; ?>">ঘ</span> <span class="result_option"><?php echo $option_D ->option_D; ?></span>
                         <?php if(!empty($option_D ->option_D_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_D ->option_D_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
                 </div>
+                <hr>
+                <div class="col-sm-3">
+                        <b class="text-info">Answer Description : 
+                         <?php if(empty($questions->question_answer_description)){ echo "Description not Available";} ?>
+                        </b><span class="text-success"><?php echo $questions->question_answer_description; ?></span><br>
+                        <?php if(!empty($questions->question_answer_image)){ ?>
+                        <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$questions->question_answer_image ;?>" height="150px" width="150px"></span>
+                        <?php } ?>
+                </div>
+                
         </div>
         <?php 
+
         $index=$index+1;
+         $indexColor= $indexColor+2;
               
     } ?>
     </div>

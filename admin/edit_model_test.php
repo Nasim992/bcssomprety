@@ -1,20 +1,19 @@
 <?php include 'toplayout.php';
 
 $userId=userID($userInput);
-
-$data = all_by_SPECIFIC_ID($CREATE_COURSE,'id',$userId);
+$data =all_by_userID_NOT($CREATE_COURSE,'id',1);
 
 if(empty($_GET['id'])){
-    $modelTestID = remainingBYID_DESC($MODEL_TEST,"id",$userId);
+    $modelTestID = $_GET['id'];
 }else {
     $modelTestID = $_GET['id'];
 }
 $modelTestID =  intval($modelTestID);
 $model_test_data = twoTablesFULLJOIN_WHERE($MODEL_TEST,'course_id',$CREATE_COURSE,'id','id',$modelTestID);
 
-if( TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userId)==0) {
+if( TotalNumberOfRowsWhere($MODEL_TEST,"id",$modelTestID)==0) {
   echo "<script type='text/javascript'> document.location = 'view_model_tests'; </script>";
-} 
+}
 
 ?>
 
@@ -25,7 +24,7 @@ if( TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userI
 <br>
 <div class="content">
     <div class="new_model_test_box">
-        <h3 class="text-center">মডেল টেস্ট Edit করুন</h3>
+        <h3 class="text-center">মডেল টেস্ট আপডেট করুন</h3>
         <hr>
         <br>
         <form class="new_model_test" id="new_model_test" enctype="multipart/form-data" action="../link/update_model_test" method="post">
@@ -50,7 +49,7 @@ if( TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userI
                 <div class="col-md-6">
                     <div class="form-row">
                         <strong> সঠিক উত্তরের মান </strong>
-                        <input autocomplete="off" class="form-control" type="number" step="any" min="1"
+                        <input autocomplete="off" class="form-control" type="number"  min="1"step=any
                             name="model_test_positive_mark" id="model_test_mark" value="<?php echo $row['positive_mark']; ?>"/>
                     </div>
                 </div>
@@ -58,7 +57,7 @@ if( TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userI
                     <div class="form-group">
                         <strong>নেগেটিভ নম্বর </strong>
                         <input step="any" class="form-control" type="number"
-                            name="model_test_negative_mark" step="any" min="0" id="model_test_negative_mark" value="<?php echo $row['negative_mark']; ?>"/>
+                            name="model_test_negative_mark"  min="0" id="model_test_negative_mark"step=any value="<?php echo $row['negative_mark']; ?>"/>
                     </div>
                 </div>
             </div> 
@@ -101,8 +100,8 @@ if( TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userI
                         <strong> কোর্স </strong>
                         <select id="category_select" class="form-control" name="model_test_category">
                         <option value="1">Free course</option>
-                          <?php  foreach ($data as $rowCourse) { ?>
-                            <option value="<?php echo $rowCourse['id']; ?>"><?php echo $rowCourse['course_name']; ?></option>
+                          <?php  foreach ($data as $row) { ?>
+                            <option value="<?php echo $row['id']; ?>"><?php echo $row['course_name']; ?></option>
                           <?php } ?>
                         </select>
                     </div>

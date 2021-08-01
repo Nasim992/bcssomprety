@@ -9,7 +9,7 @@ if(empty($_GET['id'])){
 $modelTestID =  intval($modelTestID);
 $model_test_data = twoTablesFULLJOIN_WHERE($MODEL_TEST,'course_id',$CREATE_COURSE,'id','id',$modelTestID);
 
-if(TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,'id','user_id',$modelTestID,$userId)==0) {
+if(TotalNumberOfRowsWhere($MODEL_TEST,'id',$modelTestID)==0) {
   echo "<script type='text/javascript'> document.location = 'create_model_test'; </script>";
 }
 
@@ -50,7 +50,6 @@ $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$modelTestID);
         // Replacing UnderLine Questions
         $questions_statement = str_replace("[]","<u>",$questions->question_statement);
         $questions_statement = str_replace("[/]","</u>",$questions_statement);
-        
         
         // Selecting Correct Ans 
         $colorA = '';

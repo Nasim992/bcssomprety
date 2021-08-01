@@ -3,9 +3,12 @@ session_start();
 include 'config.php';
 include 'functions.php';
 
-    if (isset($_SESSION['userInput'])){
-        $userInput = $_SESSION["userInput"];
-    } 
+if (isset($_SESSION['userInput'])){
+    $userInput = $_SESSION["userInput"];
+} 
+$user_id=userID($userInput);
+$userType = returnSingleValue($USER,'type','id',$user_id);
+
 // Update Course Name
     if(isset($_POST['update_course_name'])){
         $course_id = $_POST['course_id'];
@@ -15,18 +18,18 @@ include 'functions.php';
             set_message('<div class="container p-2">
             <p class="alert alert-warning alert-dismissible" id="message">Required Field is empty</p>
             </div>');
-            redirect('../student/edit_my_courses');
+            $userType=='admin'?redirect('../admin/edit_courses'):redirect('../student/edit_my_courses');
         }else {
             if(updateOne($CREATE_COURSE,$course_id,'course_name',$course_name )){
                 set_message('<div class="container p-2">
                 <p class="alert alert-success alert-dismissible" id="message">Course Name Updated Success</p>
               </div>');
-              redirect('../student/my_courses');
+              $userType=='admin'?redirect('../admin/edit_courses'):redirect('../student/edit_my_courses');
             }else {
                 set_message('<div class="container p-2">
                 <p class="alert alert-warning alert-dismissible" id="message">Not Updated Yet</p>
                 </div>');
-                redirect('../student/edit_my_courses');
+                $userType=='admin'?redirect('../admin/edit_courses'):redirect('../student/edit_my_courses');
             }
         }
     }
@@ -40,12 +43,12 @@ if(isset($_POST['update_payment_status'])){
             set_message('<div class="container p-2">
             <p class="alert alert-success alert-dismissible" id="message">Payment Status Updated Success</p>
           </div>');
-          redirect('../student/my_courses');
+          $userType=='admin'?redirect('../admin/all_courses'):redirect('../student/my_courses');
         }else {
             set_message('<div class="container p-2">
             <p class="alert alert-warning alert-dismissible" id="message">Not Updated Yet</p>
             </div>');
-            redirect('../student/edit_my_courses');
+            $userType=='admin'?redirect('../admin/edit_courses'):redirect('../student/edit_my_courses');
         }
 }
 // Update Payment
@@ -57,18 +60,18 @@ if(isset($_POST['update_payment_amount'])){
         set_message('<div class="container p-2">
         <p class="alert alert-warning alert-dismissible" id="message">Required Field is empty</p>
         </div>');
-        redirect('../student/edit_my_courses');
+        $userType=='admin'?redirect('../admin/edit_courses'):redirect('../student/edit_my_courses');
     }else {
         if(updateOne($CREATE_COURSE,$course_id,'payment_amount', $payment_amount )){
             set_message('<div class="container p-2">
             <p class="alert alert-success alert-dismissible" id="message">Payment info Updated Success</p>
           </div>');
-          redirect('../student/my_courses');
+          $userType=='admin'?redirect('../admin/all_courses'):redirect('../student/my_courses');
         }else {
             set_message('<div class="container p-2">
             <p class="alert alert-warning alert-dismissible" id="message">Not Updated Yet</p>
             </div>');
-            redirect('../student/edit_my_courses');
+            $userType=='admin'?redirect('../admin/edit_courses'):redirect('../student/edit_my_courses');
         }
     }
 }

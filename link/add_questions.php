@@ -3,6 +3,11 @@ session_start();
 include 'config.php';
 include 'functions.php';
 if(isset($_POST['add_question'])){
+    if (isset($_SESSION['userInput'])){
+        $userInput = $_SESSION["userInput"];
+} 
+$user_id=userID($userInput);
+$userType = returnSingleValue($USER,'type','id',$user_id);
 
 $model_test_id = $_POST['model_test_id'];
 $question_statement = $_POST['question_statement'];
@@ -37,7 +42,8 @@ $question_ARRAY = array(
     "question_image"=>$question_image,
     "question_image_type"=>$question_image_type,
     "correct_answer"=>$correct_answer,
-    "question_answer_description"=>$question_answer_description
+    "question_answer_description"=>$question_answer_description,
+    "question_answer_image"=>$question_answer_image
 );
 $question_A_ARRAY = array(
     "option_A"=>$option_A,
@@ -87,14 +93,15 @@ if($query->rowCount() > 0) {
 
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Question Added Successfully</p>
-  </div>');
+  </div>'); 
 // Total Question Updated
   $total_Question = TotalNumberOfRowsWhere($QUESTIONS,'model_test_id',$model_test_id);
-  updateOne($MODEL_TEST,$model_test_id,'total_questions', $total_Question)? redirect('../student/add_questions'): redirect('../student/add_questions');
+  updateOne($MODEL_TEST,$model_test_id,'total_questions', $total_Question);
+  $userType=='admin'?redirect('../admin/add_questions'):redirect('../student/add_questions');
 }else {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>
     </div>');
-    redirect('../student/add_questions');
+    $userType=='admin'?redirect('../admin/add_questions'):redirect('../student/add_questions');
 }
 }

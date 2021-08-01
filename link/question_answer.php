@@ -20,7 +20,7 @@ foreach ($alldata as $row) {
     // Get the correct Answer form Database
     $questions = json_decode($row['questions']);
     empty($_POST["question_id".$row['id']])?$question_Number=0:$question_Number=$_POST["question_id".$row['id']];
-    empty($_POST["question_answer".$row['id']])?$answer=0:$answer=$_POST["question_answer".$row['id']];
+    empty($_POST["question_answer".$row['id']])?$answer='S':$answer=$_POST["question_answer".$row['id']];
      if($questions->correct_answer==$_POST["question_answer".$row['id']]  && !empty( $_POST["question_answer".$row['id']]))
     {
         $correctAnswer++;
