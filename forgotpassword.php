@@ -22,7 +22,7 @@ if (isset($_SESSION['userInput'])){
     <link rel="shortcut icon" href="images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png"
         type="image/x-icon">
     <link rel="stylesheet" href="css/index.css">
-    <title>BCS Somprety</title>
+    <title>BCS Somprity</title>
 </head>
 
 <body>
@@ -32,11 +32,9 @@ if (isset($_SESSION['userInput'])){
     <?php  include 'navbar.php';?>
     <!-- Forgot password-->
     <div class="container col-md-5 p-5">
+    <?php display_message(); ?>
         <div class="pass_box">
-            <form class="new_user" id="new_user" action="/users/password" accept-charset="UTF-8" method="post"><input
-                    type="hidden" name="authenticity_token"
-                    value="4SmadwoqyiB_RtaNw_3xdpzmileT5XNcpaDjs_ZhgyPhpJ4VJph_gTduGoVvEXFnaOssIBQJKKPwbvUFjNagQA" />
-
+            <form class="new_user" id="new_user" action="link/forgotpassword.php" accept-charset="UTF-8" method="post">
 
                 <div class="field">
                     <b>ই-মেইল</b><br />
@@ -45,7 +43,7 @@ if (isset($_SESSION['userInput'])){
                 </div>
                 <br>
                 <div class="actions">
-                    <input type="submit" name="commit" value="Send me reset password instructions"
+                    <input type="submit" name="forgot_email_submit" value="Send me reset password instructions"
                         class="form-control btn btn-success" data-disable-with="Send me reset password instructions" />
                 </div>
             </form>
@@ -55,9 +53,7 @@ if (isset($_SESSION['userInput'])){
     <!-- Footer -->
     <?php include 'footer.php'?>
 
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
+ <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -68,7 +64,36 @@ if (isset($_SESSION['userInput'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
     </script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css">
+    <script>
+    $("#message").show();
+    setTimeout(function() {
+        $("#message").hide();
+    }, 3000);
+    $(".p-viewer").on('click',function() {
+        if ($(".password").attr('type') === 'password') {
+            $(".password").attr('type', 'text');
+        } else {
+            $(".password").attr('type', 'password');
+        }
+    });
 
+    $(".p-viewer2").on('click',function() {
+        if ($(".confirm_password").attr('type') === 'password') {
+            $(".confirm_password").attr('type', 'text');
+        } else {
+            $(".confirm_password").attr('type', 'password');
+        }
+    });
+
+    $(".p-viewer3").on('click',function() {
+        if ($(".current_password").attr('type') === 'password') {
+            $(".current_password").attr('type', 'text');
+        } else {
+            $(".current_password").attr('type', 'password');
+        }
+    });
+    </script>
 </body>
 
 </html>

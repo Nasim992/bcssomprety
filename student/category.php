@@ -6,7 +6,7 @@ $course_data = all_RANDOM_LIMIT($CREATE_COURSE,6);
 <div class="row bg-white">
     <div class="home_content">
         <h4> কোর্স <span class="right_btn">
-                <a class="more_btn" href="categories">More &gt;</a>
+                <a class="more_btn" href="<?php echo $BASE_URL; ?>student/categories">More &gt;</a>
             </span> </h4>
         <hr>
 

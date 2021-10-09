@@ -4,7 +4,7 @@ $data = all_by_userID_NOT($USER,'type','admin');
 
 <div class="container">
     <div class=" card card-header">
-        <h4 class="card-title text-center" style="display: flex"> আপনার কোর্সসমূহ </h4>
+        <h4 class="card-title text-center" style="display: flex"> সমস্ত ইউজার ডিটেইলস</h4>
     </div>
     <br>
     <table class="category_table text-center" id="table_id">
@@ -15,8 +15,8 @@ $data = all_by_userID_NOT($USER,'type','admin');
                 <th> ইমেইল</th>
                 <th> ইন্সটিটিউট</th>
                 <th> অবশিষ্ঠ কোর্স</th>
-                <th> সাবস্ক্রাইব কোর্স</th>
-                <th> Action </th>
+                <th class="d-print-none"> সাবস্ক্রাইব কোর্স</th>
+                <th class="d-print-none"> Action </th>
             </tr>
         </thead>
         <?php  foreach ($data as $row) { ?>
@@ -26,8 +26,8 @@ $data = all_by_userID_NOT($USER,'type','admin');
             <td><?php  echo $row['email']; ?></td>
             <td><?php  echo $row['institute']; ?></td>
             <td><?php echo $row['remaining_courses']?> </td>
-            <td><?php  echo $row['subscribed_courses']; ?></td>
-            <td>
+            <td class="d-print-none"><?php  echo $row['subscribed_courses']; ?></td>
+            <td class="d-print-none">
                 <form action="../link/delete_user.php" method="post">
                 <a  class="bg-transparent text-primary"  href="edit_users.php?id=<?php echo $row['id']; ?>">Edit</a>
                  <input type="hidden"name="user_id"value="<?php echo $row['id']; ?>">
@@ -41,4 +41,17 @@ $data = all_by_userID_NOT($USER,'type','admin');
     <br>
 </div>
 <br>
+
+<div class="container hide pt-2">
+    <div class="d-flex justify-content-center">
+        <form action="download_user" method="post">
+        <input class="btn btn-info  d-print-none" type="submit"name="downloaod_result" value="Download as pdf"></input>
+        </form>
+        <button class="btn btn-success d-print-none ml-2" onclick="window.print();" >Print</button>
+    </div>
+</div>
+
+<br>
+<div class="d-print-none">
 <?php include 'bottomlayout.php'; ?>
+</div>

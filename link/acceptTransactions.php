@@ -22,12 +22,12 @@ if(updateOne_FIELDNAME_TWO($TRANSACTIONS,$transaction_id,'status',1,'transaction
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Transaction Accepted Success</p>
   </div>');
-  redirect('../student/pending_transactions');
+  $userType=='admin'? redirect('../admin/transactions'): redirect('../student/transactions');
 }else {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Transaction Accepted</p>
     </div>');
-    $userType=='admin'? redirect('../admin/pending_transactions'): redirect('../student/pending_transactions');
+    $userType=='admin'? redirect('../admin/transactions'): redirect('../student/transactions');
 }
 }
 // Transaction rejected
@@ -39,11 +39,11 @@ if(isset($_POST['reject'])){
         set_message('<div class="container p-2">
         <p class="alert alert-success alert-dismissible" id="message">Transaction Rejected</p>
       </div>');
-      $userType=='admin'? redirect('../admin/pending_transactions'): redirect('../student/pending_transactions');
+      $userType=='admin'? redirect('../admin/transactions'): redirect('../student/transactions');
     }else {
         set_message('<div class="container p-2">
         <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>
         </div>');
-        $userType=='admin'? redirect('../admin/pending_transactions'): redirect('../student/pending_transactions');
+        $userType=='admin'? redirect('../admin/transactions'): redirect('../student/transactions');
     }
 }

@@ -22,7 +22,9 @@ $all_pending_transaction = all_by_SPECIFIC_ID($TRANSACTIONS,'status',1);
         <td><?php echo $row['transaction_id']; ?></td>
         <td><?php echo $row['payment_method']; ?></td>
         <td>
-            Approved
+          <span class="transaction_rejected">
+          <button style="background:none;border:none;"class="text-danger" type="submit" name="reject" title="Reject"><i class="fas fa-trash-alt"></i></button>
+          </span>
         </td>
         </form>
       </tr>

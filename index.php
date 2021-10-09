@@ -23,7 +23,7 @@ if (isset($_SESSION['userInput'])){
     <link rel="shortcut icon" href="images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png"
         type="image/x-icon">
     <link rel="stylesheet" href="css/index.css">
-    <title>BCS Somprety</title>
+    <title>BCS Somprity</title>
 </head>
 
 <body>
@@ -34,13 +34,25 @@ if (isset($_SESSION['userInput'])){
     <!-- Display Message -->
     <?php display_message(); ?>
     <!-- Login Form -->
-    <?php  include 'login.php'?>
+
+
+    <!-- Notice and Carousel -->
+    <?php include 'student/notice.php'; ?>
+    <!-- CAtegories  -->
+    <?php include 'student/category.php'; ?>
+    <!-- Teams  -->
+    <?php include 'student/teams.php';?>
+    <!-- Bottom Layout -->
+
+
+
+
+
     <!-- Footer -->
     <?php include 'footer.php'?>
 
 
-
-    <!-- Optional JavaScript; choose one of the two! -->
+ <!-- Optional JavaScript; choose one of the two! -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -53,6 +65,35 @@ if (isset($_SESSION['userInput'])){
     </script>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css">
     <script>
+    $("#message").show();
+    setTimeout(function() {
+        $("#message").hide();
+    }, 3000);
+    $(".p-viewer").on('click',function() {
+        if ($(".password").attr('type') === 'password') {
+            $(".password").attr('type', 'text');
+        } else {
+            $(".password").attr('type', 'password');
+        }
+    });
+
+    $(".p-viewer2").on('click',function() {
+        if ($(".confirm_password").attr('type') === 'password') {
+            $(".confirm_password").attr('type', 'text');
+        } else {
+            $(".confirm_password").attr('type', 'password');
+        }
+    });
+
+    $(".p-viewer3").on('click',function() {
+        if ($(".current_password").attr('type') === 'password') {
+            $(".current_password").attr('type', 'text');
+        } else {
+            $(".current_password").attr('type', 'password');
+        }
+    });
+    </script>
+        <script>
     $("#message").show();
     setTimeout(function() {
         $("#message").hide();

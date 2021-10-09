@@ -34,20 +34,26 @@ $previousCategoryValue = returnSingleValue($CREATE_COURSE,'created_exams','id',$
 $previousCategoryValue = $previousCategoryValue+1;
 
 
+// Banner Transactions
+$banner_mobile_number = $_POST['mobile_number'];
+$medium = $_POST['medium'];
+$banner_fee_amount = $_POST['fee_amount'];
+
+
 // Check Paid Unpaid Courses
 if($model_test_payment!=1 || empty($model_test_payment)){
     if($model_test_category=='1'){
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">You cannot make the paid model test under unpaid courses</p>
     </div>');
-    redirect('../student/create_model_test');
+    $userType=='admin'?redirect('../admin/create_model_test'):redirect('../student/create_model_test');
     }else {
         $payment_status = returnSingleValue($CREATE_COURSE,'payment_status','id',$model_test_category);
         if($payment_status==1){
             set_message('<div class="container p-2">
             <p class="alert alert-warning alert-dismissible" id="message">You cannot make the paid model test under unpaid courses</p>
             </div>');
-            redirect('../student/create_model_test');
+            $userType=='admin'?redirect('../admin/create_model_test'):redirect('../student/create_model_test');
         }else {
             
 $banner_storage = "../storage/banner/";
@@ -56,13 +62,13 @@ if(empty($model_test_name)|| empty($user_id) || empty($model_test_examiner_name)
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Required Field Can not be empty</p>
     </div>');
-    redirect('../student/create_model_test');
+    $userType=='admin'?redirect('../admin/create_model_test'):redirect('../student/create_model_test');
 } else {
 
-$sql = "INSERT INTO ".$MODEL_TEST."(user_id,model_test_name,model_test_examiner_name,positive_mark,negative_mark,model_test_date,duration,model_set,course_id,payment,pinned,secure_pin,image_name,image_type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO ".$MODEL_TEST."(user_id,model_test_name,model_test_examiner_name,positive_mark,negative_mark,model_test_date,duration,model_set,course_id,payment,pinned,secure_pin,image_name,image_type,banner_payment_amount,banner_medium,banner_payment_number) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $query = $dbh->prepare($sql);
 
-$query->execute([$user_id,$model_test_name,$model_test_examiner_name,$model_test_positive_mark,$model_test_negative_mark,$model_test_date,$model_test_duration,$model_test_set,$model_test_category,$model_test_payment,$model_test_pinned,$secure_pin,$banner_image_name,$banner_image_type]);
+$query->execute([$user_id,$model_test_name,$model_test_examiner_name,$model_test_positive_mark,$model_test_negative_mark,$model_test_date,$model_test_duration,$model_test_set,$model_test_category,$model_test_payment,$model_test_pinned,$secure_pin,$banner_image_name,$banner_image_type,$banner_fee_amount,$medium,$banner_mobile_number]);
 
 if($query->rowCount() > 0) {
     // Update craeted course field with
@@ -70,15 +76,23 @@ if($query->rowCount() > 0) {
     // Store to the folder
     move_uploaded_file($banner_image_type_tmp,$banner_storage.$banner_image_name);
 
+    if(empty($banner_fee_amount)){
+        set_message('<div class="container p-2">
+        <p class="alert alert-success alert-dismissible" id="message">Model Test Created Successfully.Your Model test banner will not be displayed in bcsshompritys homepage</p>
+      </div>');
+      $userType=='admin'?redirect('../admin/add_questions'):redirect('../student/add_questions');
+    }
+
     set_message('<div class="container p-2">
     <p class="alert alert-success alert-dismissible" id="message">Model Test Created Successfully</p>
   </div>');
-  redirect('../student/add_questions');
+  $userType=='admin'?redirect('../admin/add_questions'):redirect('../student/add_questions');
+  
 }else {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>
     </div>');
-    redirect('../student/create_model_test');
+    $userType=='admin'?redirect('../admin/create_model_test'):redirect('../student/create_model_test');
 }
 }
         }
@@ -91,7 +105,7 @@ if(empty($model_test_name)|| empty($user_id) || empty($model_test_examiner_name)
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Required Field Can not be empty</p>
     </div>');
-    redirect('../student/create_model_test');
+    $userType=='admin'?redirect('../admin/create_model_test'):redirect('../student/create_model_test');
 } else {
 
 $sql = "INSERT INTO ".$MODEL_TEST."(user_id,model_test_name,model_test_examiner_name,positive_mark,negative_mark,model_test_date,duration,model_set,course_id,payment,pinned,secure_pin,image_name,image_type) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -108,7 +122,6 @@ if($query->rowCount() > 0) {
     <p class="alert alert-success alert-dismissible" id="message">Model Test Created Successfully</p>
   </div>');
   $userType=='admin'?redirect('../admin/add_questions'):redirect('../student/add_questions');
-//   redirect('../student/add_questions');
 }else {
     set_message('<div class="container p-2">
     <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>

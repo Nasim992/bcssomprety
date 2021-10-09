@@ -34,7 +34,7 @@
             </li>
             <li class="nav-item active">
                 <?php if(empty($userInput)){ ?>
-                <a class="nav-link btn btn-success text-white btn-block" href="<?php echo $BASE_URL; ?>"><b>Login</b><span
+                <a class="nav-link btn btn-success text-white btn-block" href="<?php echo $BASE_URL; ?>login"><b>Login</b><span
                         class="sr-only">(current)</span></a>
                 <?php }else { ?>
             <li class="nav-item active dropdown">

@@ -7,6 +7,13 @@ if (!isset ($_GET['id']) ) {
     $model_test_id  = intval($_GET['id']);  
   } 
   
+    if (!isset ($_GET['uid']) ) {  
+    $session_user_id = userID($userInput);
+  } else {  
+    $session_user_id = intval($_GET['uid']);;
+  } 
+  
+  
 // Exam is already given or not
 if(TotalNumberOfRowsWhereTWO_AND($QUESTION_ANSWER,'user_id','model_test_id',$session_user_id,$model_test_id)==0){
     set_message('<div class="container p-2">
@@ -44,7 +51,7 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
 
 <!-- Participated courses -->
 
-<div class="container">
+<div class="container"id="pdf"> 
     <div class="row text-center">
         <div class="col-sm-12">
             <h2><?php echo $model_test_name; ?></h2>
@@ -52,12 +59,13 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
         </div>
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            পরীক্ষকের নাম: <?php echo $model_test_examiner_name; ?> <br>
-            তারিখ: <?php echo stringToDate($model_test_date); ?> <br>
+            পরীক্ষকের নাম  : <?php echo $model_test_examiner_name; ?> <br>
+            পরিক্ষার্থীর নাম : <?php echo returnSingleValue($USER,"name","id",$session_user_id) ?><br>
+            তারিখ : <?php echo stringToDate($model_test_date); ?> <br>
         </div>
         <div class="col-sm-3"></div>
     </div>
-    <div class="row" align="center">
+    <div class="row" text-align="center">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
             <table class="result_box">
@@ -143,25 +151,25 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
             <hr>
             
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-md-6 p-1">
                     <span class="option_circle <?php echo $colorA." ".$colorA_Wrong." ".$colorA_Wrong1; ?>">ক</span> <span class="result_option"><?php echo $option_A ->option_A; ?></span>
                     <?php if(!empty($option_A ->option_A_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_A ->option_A_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-6 p-1">
                         <span class="option_circle <?php echo $colorB." ". $colorB_Wrong." ". $colorB_Wrong1; ?>">খ</span> <span class="result_option"><?php echo $option_B ->option_B; ?></span>
                         <?php if(!empty($option_B ->option_B_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_B ->option_B_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-6 p-1">
                         <span class="option_circle <?php echo $colorC." ".$colorC_Wrong." ". $colorC_Wrong1; ?>">গ</span> <span class="result_option"><?php echo $option_C ->option_C; ?></span>
                         <?php if(!empty($option_C ->option_C_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_C ->option_C_image ;?>" height="150px" width="150px"></span>
                     <?php } ?>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-6 p-1">
                         <span class="option_circle <?php echo $colorD." ".$colorD_Wrong." ". $colorD_Wrong1; ?>">ঘ</span> <span class="result_option"><?php echo $option_D ->option_D; ?></span>
                         <?php if(!empty($option_D ->option_D_image)){ ?>
                     <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$option_D ->option_D_image ;?>" height="150px" width="150px"></span>
@@ -169,23 +177,37 @@ $question_answer_array_data = explode(',',$question_answer_data[0]['all_answer']
                     </div>
                 </div>
                 <hr>
-                <div class="col-sm-3">
+                <div> 
+                    <?php if(!empty($questions->question_answer_description)){ ?>
                         <b class="text-info">Answer Description : 
                          <?php if(empty($questions->question_answer_description)){ echo "Description not Available";} ?>
                         </b><span class="text-success"><?php echo $questions->question_answer_description; ?></span><br>
                         <?php if(!empty($questions->question_answer_image)){ ?>
                         <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$questions->question_answer_image ;?>" height="150px" width="150px"></span>
-                        <?php } ?>
+                        <?php }} ?>
                 </div>
                 
         </div>
         <?php 
 
         $index=$index+1;
-         $indexColor= $indexColor+2;
+        $indexColor= $indexColor+2;
               
     } ?>
     </div>
 </div>
+<div class="container hide pt-2">
+    <div class="d-flex justify-content-center">
+            <form action="printResult.php" method="post">
+            <input type="hidden" name="model_test_id" value=" <?php  echo $model_test_id; ?>">
+            <input type="hidden" name="session_user_id" value=" <?php echo $session_user_id; ?>">
+        <input class="btn btn-info  d-print-none" type="submit"name="printYourResult" value="Download as pdf"></input>
+        </form>
+        <button class="btn btn-success d-print-none ml-2" onclick="window.print();" >Print</button>
+    </div>
+</div>
+
 <br>
+<div class="d-print-none">
 <?php include 'bottomlayout.php'; ?>
+</div>

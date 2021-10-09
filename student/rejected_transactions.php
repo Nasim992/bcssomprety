@@ -1,4 +1,4 @@
-<?php include'toplayout.php';
+<?php include 'toplayout.php';
 $user_id = userID($userInput);
 $all_pending_transaction = all_by_SPECIFIC_ID($TRANSACTIONS,'status',2);
 
@@ -25,7 +25,9 @@ $all_pending_transaction = all_by_SPECIFIC_ID($TRANSACTIONS,'status',2);
         <td><?php echo $row['transaction_id']; ?></td>
         <td><?php echo $row['payment_method']; ?></td>
         <td>
-            <b class="text-danger">Rejected</b>
+        <span class="transaction_approved">
+            <button style="background:none;border:none;"class="text-success" type="submit" name="approved"><i class="fas fa-check"></i></button>
+        </span> 
         </td>
         </form>
       </tr>

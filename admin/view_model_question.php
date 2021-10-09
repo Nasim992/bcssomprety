@@ -14,6 +14,7 @@ if(TotalNumberOfRowsWhere($MODEL_TEST,'id',$modelTestID)==0) {
 }
 
 $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$modelTestID);
+$finishdModelTestorNot =  TotalNumberOfRowsWhereTWO_AND($MODEL_TEST,"id","finished",$modelTestID,1);
 
 ?>
 
@@ -101,14 +102,17 @@ $questions_data = all_by_SPECIFIC_ID($QUESTIONS,'model_test_id',$modelTestID);
                     </div>
                 </div>
                 <hr>
-                <div class="col-sm-3">
-                        <b class="text-info">Answer Description : 
-                         <?php if(empty($questions->question_answer_description)){ echo "Description not Available";} ?>
-                        </b><span class="text-success"><?php echo $questions->question_answer_description; ?></span><br>
-                        <?php if(!empty($questions->question_answer_image)){ ?>
-                        <span><img style="border-radius:5px;" src="<?php echo $QUESTION_IMAGE_SRC.$questions->question_answer_image ;?>" height="150px" width="150px"></span>
-                        <?php } ?>
+                <?php if($finishdModelTestorNot<1){ ?>
+                <!-- Questions Delete  -->
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-info btn-sm mr-1" href="edit_previous_questions.php?id=<?php echo $row['id']; ?>&index=<?php echo $index; ?>" disabled>Edit Question</a>
+                    <form method="post" action="../link/delete.php">
+                    <input type="hidden" name="model_test_id"value="<?php echo $modelTestID; ?>">
+                     <input type="hidden" name="questionID" value="<?php echo $row['id']; ?>">
+                     <button class="btn btn-danger btn-sm"name="delete_question" onclick="return confirm('Are you sure you want to delete this question?')">Delete Question</button>
+                    </form>
                 </div>
+                <?php } ?>
         </div>
         <?php $index=$index+1; } ?>
     </div>

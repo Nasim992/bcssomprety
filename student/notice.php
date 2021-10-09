@@ -24,7 +24,7 @@ $page_name = 'home.php';
                 <div class="carousel-inner">
 
                     <div class="carousel-item active">
-                        <img src="../images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png"
+                        <img src="<?php echo $BASE_URL; ?>images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png"
                             class="w-100" alt="Exam text will available soon">
                     </div>
                     <?php  foreach ($data as $row) { 
@@ -62,7 +62,7 @@ $page_name = 'home.php';
                     }
                     
                     foreach ($final_pagination_results as $rows) {
-                        $notice_file_path = $NOTICE_SRC.$rows['notice_file_name'];
+                        $notice_file_path = $BASE_URL."storage/notice/".$rows['notice_file_name'];
                         ?>
                        <li class="list-group-item"><?php
                         echo "<b style='font-size:17px;'> ".$rows["notice"]." </b><br>";

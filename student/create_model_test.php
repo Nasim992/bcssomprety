@@ -116,9 +116,11 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                             <input value="1" id="addModelTestImage" data-toggle="collapse"
                                 data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"
                                 type="checkbox" name="model_test_banner" />
-                            <strong>স্লাইডার এ ব্যানার যুক্ত করুন</strong>
+                            <strong>স্লাইডার এ ব্যানার যুক্ত করুন</strong><br>
+                            [<small>ব্যানার সংযুক্ত করতে আপনাকে নির্দিষ্ট পরিমান ফি পরিশোধ করতে হবে। ফি পরিশোধ করা ব্যাতিত আপনার ব্যানার টি আমাদের হোম পেজ এ দেখাবে না। ফি পরিশোধ করতে যোগাযোগ করুন <b class="text-danger">মিজানুর রহমান: ০১৭৯৯-০৯৭১৫৬</b></small>]
                         </p>
                         <div class="collapse" id="collapseExample1">
+
                             <div class="form-row">
                                 <div class="form-group model_test_image">
                                     <strong> মডেল টেস্ট ব্যানার </strong>
@@ -126,13 +128,39 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                                         accept=".img,.png,.webp,.git,.jpg,.jpeg" id="model_test_model_test_banner" />
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <div class="form-group model_test_image">
+                                    <strong> আপনার মোবাইল নাম্বার দিন </strong>
+                                    <input class="form-control model_test_image" type="text" name="mobile_number"
+                                      id="model_test_model_test_banner" />
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group model_test_image">
+                                    <strong> মাধ্যম(b-kash,nogod,rocket) </strong>
+                                    <input class="form-control model_test_image" type="text" name="medium"
+                                      id="model_test_model_test_banner" />
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group model_test_image">
+                                    <strong> ফি এর পরিমান উল্লেখ করুন</strong>
+                                    <input class="form-control model_test_image" type="text" name="fee_amount"
+                                      id="model_test_model_test_banner" />
+                                </div>
+                            </div>
+
+
+
                         </div>
                     </div>
 
+
                 </div>
             </div>
-
-
 
             <div class="form-row">
                 <div class="col-md-4"></div>
@@ -143,6 +171,7 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
                 </div>
                 <div class="col-md-4"></div>
             </div>
+
         </form>
     </div>
 </div>

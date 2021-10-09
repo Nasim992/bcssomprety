@@ -5,12 +5,12 @@ include '../link/config.php';
 include '../link/functions.php';
 if (isset($_SESSION['userInput'])){
     $userInput = $_SESSION["userInput"];
-  } 
+} 
 // IsUserLoggedIn($userInput); 
 
 // For Pagination 
 $results_per_page = 10;  
-$total_number_of_results = TotalNumberOfRows($MODEL_TEST);
+$total_number_of_results = TotalNumberOfRowsWhere($MODEL_TEST,"finished",1);
 $number_of_page = ceil ($total_number_of_results / $results_per_page);  
 
 if (!isset ($_GET['page']) ) {  
@@ -21,9 +21,10 @@ if (!isset ($_GET['page']) ) {
 
 $start_form = ($page-1) * $results_per_page;  
 
-$final_pagination_results = allLIMIT($MODEL_TEST,$start_form , $results_per_page);
+$final_pagination_results = allLIMIT_WHERE($MODEL_TEST,$start_form , $results_per_page,"finished",1);
 
 $page_name = 'exams.php';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,7 +48,7 @@ $page_name = 'exams.php';
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css">
 
     <link rel="stylesheet" href="../css/index.css">
-    <title>BCS Somprety</title>
+    <title>BCS Somprity</title>
 </head>
 
 <body>
@@ -91,7 +92,19 @@ $page_name = 'exams.php';
                     <a href="model_exam.php?id=<?php echo  $row['id']; ?>"><?php echo $row['model_test_name']; ?></a>
                     <br>
                     তারিখ: <?php echo stringToDate($row['model_test_date']); ?> |
-                    সময়: <?php echo stringToTime($row['model_test_date']); ?>
+                    সময়: <?php echo stringToTime($row['model_test_date']); ?>  |
+                    মোট পরিক্ষার্থী :<?php echo TotalNumberOfRowsWhere($QUESTION_ANSWER,"model_test_id",$row['id']); ?> জন |
+                    <div class="fb-share-button" data-href="https://bcsshomprity.com/student/model_exam.php?id=<?php echo  $row['id']; ?>" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbcsshomprity.com%2Fstudent%2Fmodel_exam.php%3Fid%3D<?php echo  $row['id']; ?>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=359356151868093&autoLogAppEvents=1" nonce="c9WLEXf0"></script> |
+                    
+                    <input style="display:none;" type="text" value="https://bcsshomprity.com/student/model_exam.php?id=<?php echo  $row['id'];?>" id="myInput<?php echo  $row['id'];?>">
+
+                    <button class="btn btn-sm " onclick="navigator.clipboard.writeText('bcsshomprity.com/student/model_exam.php?id='+<?php echo $row['id'];?>)">
+                    <span id="myTooltip<?php echo  $row['id'];?>" class="text-danger"> Copy</span>
+                    </button> 
+
+                    <!-- </div> -->
+                    <div id="fb-root"></div>
                 </div>
             </div>
         </div>

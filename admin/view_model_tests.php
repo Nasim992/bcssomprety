@@ -1,11 +1,18 @@
 <?php include 'toplayout.php';
 $user_id = userID($userInput);
 $data = all($MODEL_TEST);
+
+if(empty($_GET['id'])){
+    $data = all($MODEL_TEST);
+}else {
+    $data =all_by_SPECIFIC_ID($MODEL_TEST,'course_id',$_GET['id']);
+}
+
 ?>
 
 <div class="container">
     <div class=" card card-header">
-        <h4 class="card-title text-center" style="display: flex"> আপনার কোর্সসমূহ </h4>
+        <h4 class="card-title text-center" style="display: flex"> সমস্ত মডেল টেস্ট সমুহ</h4>
     </div>
     <br>
     <table class="category_table text-center" id="table_id">
@@ -19,7 +26,9 @@ $data = all($MODEL_TEST);
                 <th> পিন </th>
                 <th> সেট </th>
                 <th> প্রশ্ন সংখ্যা </th>
-                <th> Action </th>
+                <th>Participated people</th>
+                <th class="d-print-none"> Action </th>
+                <th class="d-print-none"> Copy Link</th>
             </tr>
         </thead>
         <?php  foreach ($data as $row) { ?>
@@ -41,7 +50,8 @@ $data = all($MODEL_TEST);
         <td><?php echo empty($row['secure_pin'])?"—":$row['secure_pin']; ?></td>
         <td><?php echo empty($row['model_set'])?"—":$row['model_set']; ?></td>
         <td><?php echo empty($row['total_questions'])?"—":$row['total_questions']; ?></td>
-        <td>
+        <td><a href="participated_people.php?id=<?php echo $row['id']?>"><?php echo TotalNumberOfRowsWhere($QUESTION_ANSWER,"model_test_id",$row['id']); ?></a></td>
+        <td class="d-print-none">
         <form action="../link/delete_model_test.php" method="post">
           <a href="view_model_question.php?id=<?php echo $row['id']?>">Show</a>&nbsp;
           |&nbsp; <a href="edit_model_test.php?id=<?php echo $row['id']?>">Edit</a>&nbsp;
@@ -53,6 +63,12 @@ $data = all($MODEL_TEST);
         </form>
 
         </td>
+        <td>
+            <input style="display:none;" type="text" value="https://bcsshomprity.com/student/model_exam.php?id=<?php echo  $row['id'];?>" id="myInput<?php echo  $row['id'];?>">
+            <button class="btn btn-sm btn-info" onclick="navigator.clipboard.writeText('bcsshomprity.com/student/model_exam.php?id='+<?php echo $row['id'];?>)">
+            <span id="myTooltip<?php echo  $row['id'];?>"> Copy!</span>
+            </button> 
+        </td>
         </tr>
         <?php  } ?>
     </table>
@@ -60,4 +76,21 @@ $data = all($MODEL_TEST);
 
 </div>
 <br>
+<div class="container hide pt-2">
+<div class="d-flex justify-content-center">
+        <form action="download_model_test" method="post">
+        <input class="btn btn-info  d-print-none" type="submit"name="downloaod_model_test" value="Download as pdf"></input>
+        </form>
+        <button class="btn btn-success d-print-none ml-2" onclick="print_result()">Print</button>
+    </div>
+</div>
+<script>
+    function print_result(){
+        window.print();
+    }
+</script>
+
+<br>
+<div class="d-print-none">
 <?php include 'bottomlayout.php'; ?>
+</div>

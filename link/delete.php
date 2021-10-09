@@ -72,3 +72,34 @@ if($deleteSuccess){
     redirect('../admin/all_courses');
 }
 }
+
+// Delete Questions Deletetion
+if(isset($_POST['delete_question'])){
+
+    if (isset($_SESSION['userInput'])){
+        $userInput = $_SESSION["userInput"];
+}  
+
+$user_id=userID($userInput);
+$userType = returnSingleValue($USER,'type','id',$user_id);
+
+
+    $model_test_id=$_POST['model_test_id'];
+    $questionID = $_POST['questionID'];
+    
+    $numberofQuestions = returnSingleValue($MODEL_TEST,'total_questions','id',$model_test_id);
+
+    $numberofQuestions = $numberofQuestions - 1;
+
+    if(Delete_Table($QUESTIONS,'id',$questionID) && updateOne_FIELDNAME($MODEL_TEST, $model_test_id,'total_questions',$numberofQuestions,'id')){
+        set_message('<div class="container p-2">
+        <p class="alert alert-success alert-dismissible" id="message">Questions Deleted Successfully</p>
+      </div>');
+      $userType=='admin'?redirect('../admin/view_model_tests'):redirect('../student/view_model_tests');
+    }else {
+    set_message('<div class="container p-2">
+    <p class="alert alert-warning alert-dismissible" id="message">Something went wrong.Try Again</p>
+    </div>');
+    $userType=='admin'?redirect('../admin/view_model_tests'):redirect('../student/view_model_tests');
+}
+}

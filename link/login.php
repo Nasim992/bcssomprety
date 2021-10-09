@@ -17,8 +17,10 @@ if(isset($_POST['login'])){
         $_SESSION["userInput"]=$_POST['user_input'];
         set_message('<div class="container p-2">
         <p class="alert alert-success alert-dismissible" id="message">Logged in Success</p>
-      </div>');
-      redirect("../student/home");
+        </div>');
+
+            redirect("../student/home");
+    
     } else{ 
         $sql ="SELECT email,phone,password,type FROM user WHERE (email=:userInput OR phone=:userInput) and password=:password and type='admin'";
         $query= $dbh -> prepare($sql); 

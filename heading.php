@@ -6,7 +6,7 @@ $year = date("Y");
 $finalDate = $day.", ".$month." ".$date.",".$year;
 $totalmember =  TotalNumberOfRows($USER);
 ?>
-<div class="header">
+<div class="header hide d-print-none">
     <div class="row">
         <div class="left_header">
             <?php echo $finalDate;?>

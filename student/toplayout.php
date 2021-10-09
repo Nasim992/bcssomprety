@@ -1,6 +1,6 @@
 <?php  
 session_start();
-error_reporting(E_ALL);
+error_reporting(0);
 include '../link/config.php';
 include '../link/functions.php';
 if (isset($_SESSION['userInput'])){
@@ -18,6 +18,8 @@ IsUserLoggedIn($userInput);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport"
         content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=2.0,minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="BCS SHOMPRITY">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -31,6 +33,8 @@ IsUserLoggedIn($userInput);
 
     <link rel="stylesheet" href="../css/index.css">
     <title>BCS Somprety</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
 </head>
 
 <body>

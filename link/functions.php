@@ -1,4 +1,5 @@
 <?php 
+use PHPMailer\PHPMailer\PHPMailer;
 //  Set Message Function starts Here 
 function set_message($message) {
     if(!empty($message)){ 
@@ -55,7 +56,8 @@ function IsUserLoggedIn($userInput){
         set_message('<div class="container p-2">
         <p class="alert alert-warning alert-dismissible" id="message">You are not Logged in. Try to logged first.</p>
         </div>');
-        redirect($BASE_URL);
+        redirect($BASE_URL."login");
+        
     }
 }
 
@@ -185,7 +187,7 @@ function allLIMIT_DESC($table_name,$start_from, $per_page_record,$id){
 // Function return all inside the table LIMITWHERE 
 function allLIMIT_WHERE($table_name,$start_from, $per_page_record,$COMPARE_FIELD,$id){
     global $dbh;
-    return $dbh->query("SELECT * FROM ".$table_name." LIMIT $start_from, $per_page_record WHERE $COMPARE_FIELD='$id'")->fetchAll();
+    return $dbh->query("SELECT * FROM ".$table_name." WHERE $COMPARE_FIELD='$id' LIMIT $start_from, $per_page_record")->fetchAll();
 }
 
 // Functions returns all value comparing some field 
@@ -332,4 +334,17 @@ return strtotime($start_date)-$t;
 function all_by_SPECIFIC_ID_DESC($TABLE_NAME,$COMPARE_FIELD,$ID){
     global $dbh;
     return $dbh->query("SELECT * FROM ".$TABLE_NAME." WHERE ".$COMPARE_FIELD."='$ID' ORDER BY total_mark DESC")->fetchAll();
+}
+
+// Function send Mail
+function send_mail($to,$subject,$message){
+    
+$headers = "Content-type: text/html\r\n";
+$headers .= 'From: no-reply@bcsshomprity.com' . "\r\n" . 
+
+    'Reply-To: no-reply@bcsshomprity.com' . "\r\n" . 
+
+    'X-Mailer: PHP/' . phpversion(); 
+
+ mail($to, $subject, $message, $headers); 
 }

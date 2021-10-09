@@ -22,7 +22,7 @@ if (isset($_SESSION['userInput'])){
     <link rel="shortcut icon" href="images/logo-c1383effd4d17a6b3b566837fc7caeb895c979d9463ece5245c09ab0b7b89ddc.png"
         type="image/x-icon">
     <link rel="stylesheet" href="css/index.css">
-    <title>BCS Somprety</title>
+    <title>BCS Somprity</title>
 </head>
 
 <body>
@@ -65,7 +65,7 @@ if (isset($_SESSION['userInput'])){
                 <br>
                 <div class="field">
                     <b>পাসওয়ার্ড</b>
-                    <em>(আপনার পছন্দমতো কমপক্ষে ৮ অক্ষরের বা তার বেশি একটি বড় হাতের অক্ষর একটি ছোট হাতের অক্ষর আর নাম্বার দিন)</em>
+                    <em>(আপনার পছন্দমতো কমপক্ষে 6 অক্ষরের বা তার বেশি নাম্বার দিন)</em>
                     <input autocomplete="new-password" class="form-control password" type="password"
                         name="user_password" id="user_password" />
                     <span class="p-viewer">
@@ -76,7 +76,7 @@ if (isset($_SESSION['userInput'])){
                 <div class="field">
                     <b>পাসওয়ার্ড নিশ্চিত করুন</b>
                     <input autocomplete="new-password" class="form-control confirm_password" type="password"
-                        name="user_password_confirmation" id="user_password_confirmation" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"/>
+                        name="user_password_confirmation" id="user_password_confirmation" pattern=".{6,}" title="6 or more characters"/>
                     <span class="p-viewer2">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </span>

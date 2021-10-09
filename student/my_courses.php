@@ -23,7 +23,7 @@ $data = all_by_userID($CREATE_COURSE,$user_id);
         <tr>
             <td><?php  echo $row['course_name']; ?></td>
             <td>
-                <a href="#">
+                <a href="view_model_tests.php?id=<?php echo $row['id']?>">
                     <div style="width: 100%">
                         <?php  echo $row['created_exams']?$row['created_exams']:"—"; ?>
                     </div>

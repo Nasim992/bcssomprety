@@ -1,11 +1,11 @@
-<?php include'toplayout.php';
+<?php include 'toplayout.php';
 $user_id = userID($userInput);
 $all_pending_transaction = all_by_SPECIFIC_ID($TRANSACTIONS,'status',0);
 
 ?>
 <br>
 <div class="container">
-  <table class="transaction_table" align="center">
+  <table class="transaction_table" text-align="center">
     <tr>
       <th> মোবাইল নম্বর </th>
       <th> ট্রান্সেকশন ID </th>

@@ -1,11 +1,11 @@
-<?php include'toplayout.php';
+<?php include 'toplayout.php';
 $user_id = userID($userInput);
 $all_pending_transaction = all_by_SPECIFIC_ID($TRANSACTIONS,'status',1);
 
 ?>
 <br>
 <div class="container">
-  <table class="transaction_table" align="center">
+  <table class="transaction_table" text-align="center">
     <tr>
       <th> মোবাইল নম্বর </th>
       <th> ট্রান্সেকশন ID </th>
@@ -25,7 +25,9 @@ $all_pending_transaction = all_by_SPECIFIC_ID($TRANSACTIONS,'status',1);
         <td><?php echo $row['transaction_id']; ?></td>
         <td><?php echo $row['payment_method']; ?></td>
         <td>
-            Approved
+          <span class="transaction_rejected">
+          <button style="background:none;border:none;"class="text-danger" type="submit" name="reject" title="Reject"><i class="fas fa-trash-alt"></i></button>
+          </span>
         </td>
         </form>
       </tr>

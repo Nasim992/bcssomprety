@@ -27,11 +27,11 @@ if(TotalNumberOfRowsWhereTWO_AND($TRANSACTIONS,'course_id','user_id',$course_id,
 ?>
 <div class="container">
     <div class="new_model_test_box">
-        <h3 align="center">নতুন ট্রান্সেকশন তৈরী করুন</h3>
+        <h3 text-align="center">নতুন ট্রান্সেকশন তৈরী করুন</h3>
         <hr>
         <br>
         <form action="../link/transaction.php" method="post">
-        <div align="center">
+        <div text-align="center">
             <h5> আপনি  "<?php echo $course_name; ?>" এর অন্তর্গত মডেল টেস্টটির জন্য ট্রান্সেকশন তথ্য দিচ্ছেন</h5>
         </div>
 

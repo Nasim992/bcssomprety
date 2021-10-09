@@ -97,10 +97,7 @@
             document.getElementById('new_model_test_form').click();
         }, totalSec);
     });
-
-       </script>
-       
-
+        </script>
        </body>
 
        </html>

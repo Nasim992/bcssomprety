@@ -30,7 +30,7 @@ IsUserLoggedIn($userInput);
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.min.css">
 
     <link rel="stylesheet" href="../css/index.css">
-    <title>BCS Somprety</title>
+    <title>BCS Somprity</title>
 </head>
 
 <body>
